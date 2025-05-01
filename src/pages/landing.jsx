@@ -14,7 +14,7 @@ export default function Landing() {
   return (
     <>
       <Hero />
-      <Technologies />
+      {/* <Technologies /> */}
       <Combo />
       <Apps />
       <Free />

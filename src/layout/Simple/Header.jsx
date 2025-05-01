@@ -170,11 +170,11 @@ export default function Header({ layout = 'landing', ...others }) {
                 sx={{ ml: theme.direction === ThemeDirection.RTL ? 3 : 0 }}
                 color="secondary.main"
                 component={RouterLink}
-                to={ispValueAvailable ? '/login?isp=1' : '/login'}
+                to={ispValueAvailable ? '/login?isp=1' : '/about-us'}
                 target="_blank"
                 underline="none"
               >
-                Dashboard
+                About us
               </Link>
               <Link
                 className="header-link"
@@ -182,8 +182,9 @@ export default function Header({ layout = 'landing', ...others }) {
                 component={RouterLink}
                 to={ispValueAvailable ? '/components-overview/buttons?isp=1' : '/components-overview/buttons'}
                 underline="none"
+                aria-disabled
               >
-                Components
+                Carrers
               </Link>
               <Link
                 className="header-link"
@@ -192,43 +193,8 @@ export default function Header({ layout = 'landing', ...others }) {
                 target="_blank"
                 underline="none"
               >
-                Documentation
+                Contact us
               </Link>
-              <Link
-                className="header-link"
-                color="secondary.main"
-                id="wallet-button"
-                href="#"
-                aria-controls={open ? 'wallet-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-                underline="none"
-                sx={{ path: { strokeWidth: 2 }, svg: { marginBottom: '-3px' } }}
-              >
-                Live Preview {open ? <ArrowUp2 size="16" /> : <ArrowDown2 size="16" />}
-              </Link>
-              <Menu
-                id="wallet-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'wallet-button',
-                  sx: { p: 1.25, minWidth: 150 }
-                }}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right'
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right'
-                }}
-                sx={{ '.MuiModal-backdrop': { backgroundColor: 'unset' } }}
-              >
-                {listItems}
-              </Menu>
               <Link href="https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template" target="_blank" underline="none">
                 <IconButton
                   size="large"
@@ -255,143 +221,11 @@ export default function Header({ layout = 'landing', ...others }) {
                     size="large"
                     variant="contained"
                   >
-                    Purchase Now
+                    Schedule a meet
                   </Button>
                 </AnimateButton>
               </Box>
             </Stack>
-            <Box
-              sx={{
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                display: { xs: 'flex', md: 'none' }
-              }}
-            >
-              <Typography sx={{ textAlign: 'left', display: 'inline-block' }}>
-                <Logo to="/" />
-              </Typography>
-              <Stack direction="row" spacing={2}>
-                {layout !== 'component' && (
-                  <Button
-                    variant="outlined"
-                    color="warning"
-                    component={RouterLink}
-                    to={ispValueAvailable ? '/components-overview/buttons?isp=1' : '/components-overview/buttons'}
-                    sx={{ mt: 0.25 }}
-                  >
-                    All Components
-                  </Button>
-                )}
-
-                <IconButton
-                  size="large"
-                  color="secondary"
-                  {...(layout === 'component'
-                    ? { onClick: () => handlerComponentDrawer(!menuMaster.isComponentDrawerOpened) }
-                    : { onClick: drawerToggler(true) })}
-                  sx={{ p: 1 }}
-                >
-                  <HambergerMenu />
-                </IconButton>
-              </Stack>
-              <Drawer
-                anchor="top"
-                open={drawerToggle}
-                onClose={drawerToggler(false)}
-                sx={{ '& .MuiDrawer-paper': { backgroundImage: 'none' } }}
-              >
-                <Box
-                  sx={{
-                    width: 'auto',
-                    '& .MuiListItemIcon-root': {
-                      fontSize: '1rem',
-                      minWidth: 32
-                    }
-                  }}
-                  role="presentation"
-                  onKeyDown={drawerToggler(false)}
-                >
-                  <List>
-                    <Link
-                      style={{ textDecoration: 'none' }}
-                      component={RouterLink}
-                      to={ispValueAvailable ? '/login?isp=1' : '/login'}
-                      target="_blank"
-                    >
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="Dashboard" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                      </ListItemButton>
-                    </Link>
-                    <Link
-                      style={{ textDecoration: 'none' }}
-                      component={RouterLink}
-                      to={ispValueAvailable ? '/components-overview/buttons?isp=1' : '/components-overview/buttons'}
-                      target="_blank"
-                    >
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="All Components" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                      </ListItemButton>
-                    </Link>
-                    <Link
-                      style={{ textDecoration: 'none' }}
-                      href="https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template"
-                      target="_blank"
-                    >
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="Free Version" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                      </ListItemButton>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="https://phoenixcoded.gitbook.io/able-pro" target="_blank">
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="Documentation" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                      </ListItemButton>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="https://phoenixcoded.authordesk.app/" target="_blank">
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="Support" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                      </ListItemButton>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href={url} target="_blank">
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="Purchase Now" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                        <Chip color="primary" label={import.meta.env.VITE_APP_VERSION} size="small" />
-                      </ListItemButton>
-                    </Link>
-                    <Link style={{ textDecoration: 'none' }} href="#" onClick={() => setOpenDrawer(!openDrawer)}>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus color={theme.palette.secondary.main} />
-                        </ListItemIcon>
-                        <ListItemText primary="Live Preview" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                        <Stack sx={{ path: { strokeWidth: 2 } }}>{openDrawer ? <ArrowUp2 size="16" /> : <ArrowDown2 size="16" />}</Stack>
-                      </ListItemButton>
-                    </Link>
-                    <Collapse in={openDrawer} timeout="auto" unmountOnExit>
-                      {openDrawer && <List sx={{ p: 0, pl: 6, '& .MuiListItemIcon-root': { minWidth: 20 } }}>{MobileMenuListItem}</List>}
-                    </Collapse>
-                  </List>
-                </Box>
-              </Drawer>
-            </Box>
           </Toolbar>
         </Container>
       </AppBar>

@@ -7,6 +7,7 @@ import PagesLayout from 'layout/Pages';
 import SimpleLayout from 'layout/Simple';
 
 import { SimpleLayoutType } from 'config';
+import AboutUS from 'sections/landing/AboutUs';
 
 const MaintenanceError = Loadable(lazy(() => import('pages/maintenance/error/404')));
 const MaintenanceError500 = Loadable(lazy(() => import('pages/maintenance/error/500')));
@@ -44,6 +45,16 @@ const MainRoutes = {
         {
           path: 'contact-us',
           element: <ContactUS />
+        }
+      ]
+    },
+    {
+      path: '/',
+      element: <SimpleLayout layout={SimpleLayoutType.SIMPLE} />,
+      children: [
+        {
+          path: 'about-us',
+          element: <AboutUS />
         }
       ]
     },

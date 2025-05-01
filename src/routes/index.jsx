@@ -24,9 +24,9 @@ const router = createBrowserRouter(
           element: <PagesLanding />
         }
       ]
-    }
+    },
+    MainRoutes
   ],
-  [MainRoutes],
   { basename: import.meta.env.VITE_APP_BASE_NAME }
 );
 

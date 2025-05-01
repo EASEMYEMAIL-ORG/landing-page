@@ -25,9 +25,10 @@ import AnimateButton from 'components/@extended/AnimateButton';
 
 // ==============================|| LANDING - HERO PAGE ||============================== //
 
-export default function HeroPage() {
+export default function AboutUS() {
   const theme = useTheme();
   
+  console.log("*****************")
   return (
     <Box sx={{ minHeight: '100vh', position: 'relative', pb: 12.5, pt: 10, display: 'flex', alignItems: 'center' }}>
       <Container>

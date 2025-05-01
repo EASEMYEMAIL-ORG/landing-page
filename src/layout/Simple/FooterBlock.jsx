@@ -62,8 +62,8 @@ export default function FooterBlock({ isFull }) {
                   </Grid>
                   <Grid item xs={12}>
                     <Typography variant="subtitle1" sx={{ fontWeight: 400, maxWidth: 320 }}>
-                      Phoenixcoded has gained the trust of over 5.5K customers since 2015, thanks to our commitment to delivering
-                      high-quality products. Our experienced team players are responsible for managing Able Pro.
+                      Developlogy — Freelance Software Studio | Built with ♥ by developers who care.
+                      © 2025 Developlogy. All rights reserved.
                     </Typography>
                   </Grid>
                 </Grid>
@@ -144,7 +144,7 @@ export default function FooterBlock({ isFull }) {
                 © Handcrafted by Team{' '}
                 <Link href="https://1.envato.market/xk3bQd" underline="none">
                   {' '}
-                  Phoenixcoded
+                  Developlogy
                 </Link>
               </Typography>
             </Grid>
