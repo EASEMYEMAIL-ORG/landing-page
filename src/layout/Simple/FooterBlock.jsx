@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-// material-ui
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -8,25 +7,21 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
-// third-party
 import { motion } from 'framer-motion';
 
-// project-imports
 import Logo from 'components/logo';
 
-// assets
-import { Dribbble, Facebook, Link2, Youtube, Xrp } from 'iconsax-react';
-
-// link - custom style
 const FooterLink = styled(Link)(({ theme }) => ({
   color: theme.palette.text.primary,
   '&:hover, &:active': {
     color: theme.palette.primary.main
   }
 }));
-
-// ==============================|| LANDING - FOOTER PAGE ||============================== //
 
 export default function FooterBlock({ isFull }) {
   const theme = useTheme();
@@ -45,16 +40,12 @@ export default function FooterBlock({ isFull }) {
     <>
       <Box sx={{ pt: isFull ? 5 : 10, pb: 10, bgcolor: 'secondary.200', borderTop: `1px solid ${theme.palette.divider}` }}>
         <Container>
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30 }}
               >
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
@@ -62,66 +53,76 @@ export default function FooterBlock({ isFull }) {
                   </Grid>
                   <Grid item xs={12}>
                     <Typography variant="subtitle1" sx={{ fontWeight: 400, maxWidth: 320 }}>
-                      Developlogy — Freelance Software Studio | Built with ♥ by developers who care.
-                      © 2025 Developlogy. All rights reserved.
+                      Developlogy is a custom software studio founded by Naveed Pagdiwale, offering tailored digital solutions for startups
+                      and businesses.
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      © {new Date().getFullYear()} Developlogy. All rights reserved.
                     </Typography>
                   </Grid>
                 </Grid>
               </motion.div>
             </Grid>
+
             <Grid item xs={12} md={8}>
-              <Grid container spacing={{ xs: 5, md: 2 }}>
+              <Grid container spacing={4}>
                 <Grid item xs={6} sm={4}>
-                  <Stack spacing={3}>
-                    <Typography variant="h5">Company</Typography>
-                    <Stack spacing={{ xs: 1.5, md: 2.5 }}>
-                      <FooterLink href="https://1.envato.market/xk3bQd" target="_blank" underline="none">
-                        Profile
-                      </FooterLink>
-                      <FooterLink href="https://1.envato.market/Qyre4x" target="_blank" underline="none">
-                        Portfolio
-                      </FooterLink>
-                      <FooterLink href="https://1.envato.market/Py9k4X" target="_blank" underline="none">
-                        Follow Us
-                      </FooterLink>
-                      <FooterLink href="https://phoenixcoded.net" target="_blank" underline="none">
-                        Website
-                      </FooterLink>
-                    </Stack>
+                  <Stack spacing={2}>
+                    <Typography variant="h6">Company</Typography>
+                    <FooterLink href="/about-us" underline="none">
+                      About Us
+                    </FooterLink>
+                    <FooterLink href="/services" underline="none">
+                      Services
+                    </FooterLink>
+                    <FooterLink href="/projects" underline="none">
+                      Projects
+                    </FooterLink>
+                    <FooterLink href="/careers" underline="none">
+                      Careers
+                    </FooterLink>
                   </Stack>
                 </Grid>
+
                 <Grid item xs={6} sm={4}>
-                  <Stack spacing={3}>
-                    <Typography variant="h5">Help & Support</Typography>
-                    <Stack spacing={{ xs: 1.5, md: 2.5 }}>
-                      <FooterLink href="https://phoenixcoded.gitbook.io/able-pro/v/react/" target="_blank" underline="none">
-                        Documentation
-                      </FooterLink>
-                      <FooterLink href="https://phoenixcoded.gitbook.io/able-pro/v/react/roadmap/" target="_blank" underline="none">
-                        Feature Request
-                      </FooterLink>
-                      <FooterLink href="https://phoenixcoded.gitbook.io/able-pro/v/react/roadmap/" target="_blank" underline="none">
-                        RoadMap
-                      </FooterLink>
-                      <FooterLink href="https://phoenixcoded.authordesk.app/" target="_blank" underline="none">
-                        Support
-                      </FooterLink>
-                      <FooterLink href="https://themeforest.net/user/phoenixcoded#contact" target="_blank" underline="none">
-                        Email Us
-                      </FooterLink>
-                    </Stack>
+                  <Stack spacing={2}>
+                    <Typography variant="h6">Support</Typography>
+                    <FooterLink href="/contact" underline="none">
+                      Contact Us
+                    </FooterLink>
+                    <FooterLink href="/schedule-meet" underline="none">
+                      Schedule a Meet
+                    </FooterLink>
+                    <FooterLink href="mailto:support@developlogy.com" underline="none">
+                      Email Support
+                    </FooterLink>
                   </Stack>
                 </Grid>
-                <Grid item xs={6} sm={4}>
-                  <Stack spacing={3}>
-                    <Typography variant="h5">Useful Resources</Typography>
-                    <Stack spacing={{ xs: 1.5, md: 2.5 }}>
-                      <FooterLink href="https://themeforest.net/page/item_support_policy" target="_blank" underline="none">
-                        Support Policy
-                      </FooterLink>
-                      <FooterLink href="https://themeforest.net/licenses/standard" target="_blank" underline="none">
-                        Licenses Term
-                      </FooterLink>
+
+                <Grid item xs={12} sm={4}>
+                  <Stack spacing={2}>
+                    <Typography variant="h6">Follow Us</Typography>
+                    <Stack direction="row" spacing={2}>
+                      <Tooltip title="LinkedIn">
+                        <Link href="https://linkedin.com/in/naveedpagdiwale" target="_blank" sx={linkSX}>
+                          <LinkedInIcon variant="Bold" size={20} />
+                        </Link>
+                      </Tooltip>
+                      <Tooltip title="GitHub">
+                        <Link href="https://github.com/developlogy" target="_blank" sx={linkSX}>
+                          <GitHubIcon variant="Bold" size={20} />
+                        </Link>
+                      </Tooltip>
+                      <Tooltip title="YouTube">
+                        <Link href="#" target="_blank" sx={linkSX}>
+                          <YouTubeIcon variant="Bold" size={20} />
+                        </Link>
+                      </Tooltip>
+                      <Tooltip title="Facebook">
+                        <Link href="#" target="_blank" sx={linkSX}>
+                          <FacebookIcon variant="Bold" size={20} />
+                        </Link>
+                      </Tooltip>
                     </Stack>
                   </Stack>
                 </Grid>
@@ -130,68 +131,18 @@ export default function FooterBlock({ isFull }) {
           </Grid>
         </Container>
       </Box>
-      <Box
-        sx={{
-          py: 2.4,
-          borderTop: `1px solid ${theme.palette.divider}`,
-          bgcolor: 'secondary.200'
-        }}
-      >
+
+      <Box sx={{ py: 2.4, borderTop: `1px solid ${theme.palette.divider}`, bgcolor: 'secondary.200' }}>
         <Container>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={8}>
-              <Typography>
-                © Handcrafted by Team{' '}
-                <Link href="https://1.envato.market/xk3bQd" underline="none">
-                  {' '}
-                  Developlogy
-                </Link>
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Grid container spacing={2} alignItems="center" sx={{ justifyContent: 'flex-end' }}>
-                <Grid item>
-                  <Tooltip title="Linkedin">
-                    <Link href="https://in.linkedin.com/company/phoenixcoded" underline="none" target="_blank" sx={linkSX}>
-                      <Link2 variant="Bold" size={24} />
-                    </Link>
-                  </Tooltip>
-                </Grid>
-                <Grid item>
-                  <Tooltip title="Twitter">
-                    <Link href="https://twitter.com/phoenixcoded?lang=en" underline="none" target="_blank" sx={linkSX}>
-                      <Xrp variant="Bold" size={16} />
-                    </Link>
-                  </Tooltip>
-                </Grid>
-                <Grid item>
-                  <Tooltip title="Facebook">
-                    <Link href="https://www.facebook.com/Phoenixcoded/" underline="none" target="_blank" sx={linkSX}>
-                      <Facebook variant="Bold" size={20} />
-                    </Link>
-                  </Tooltip>
-                </Grid>
-                <Grid item>
-                  <Tooltip title="Dribbble">
-                    <Link href="https://dribbble.com/Phoenixcoded" underline="none" target="_blank" sx={linkSX}>
-                      <Dribbble variant="Bold" size={20} />
-                    </Link>
-                  </Tooltip>
-                </Grid>
-                <Grid item>
-                  <Tooltip title="Youtube">
-                    <Link href="https://www.youtube.com/@Phoenixcodedwebsolution?app=desktop" underline="none" target="_blank" sx={linkSX}>
-                      <Youtube variant="Bold" size={20} />
-                    </Link>
-                  </Tooltip>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Grid>
+          <Typography align="center" variant="body2" color="text.secondary">
+            Handcrafted with ♥ by Developlogy | Custom Software Development Studio
+          </Typography>
         </Container>
       </Box>
     </>
   );
 }
 
-FooterBlock.propTypes = { isFull: PropTypes.bool };
+FooterBlock.propTypes = {
+  isFull: PropTypes.bool
+};
