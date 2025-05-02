@@ -88,7 +88,7 @@ export default function AboutUs() {
                         <li>UI/UX Collaboration & Frontend Development</li>
                         <li>Freelance or Project-Based Engagements</li>
                       </ul>
-                      <Typography variant="h5" sx={{ mt: 3 }}>
+                      <Typography variant="h5" sx={{ mt: 3 }} justifySelf="center">
                         Let&apos;s build something great together.
                       </Typography>
                     </Grid>

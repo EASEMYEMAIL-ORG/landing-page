@@ -1,5 +1,7 @@
 // material-ui
 import { useTheme } from '@mui/material/styles';
+import { Link as RouterLink } from 'react-router-dom';
+import Box from '@mui/material/Box';
 
 /**
  * if you want to use image instead of <svg> uncomment following.
@@ -15,13 +17,7 @@ export default function LogoMain() {
   const theme = useTheme();
 
   return (
-    /**
-     * if you want to use image instead of svg uncomment following, and comment out <svg> element.
-     *
-     * <img src={theme.palette.mode === ThemeMode.DARK ? logoDark : logo} alt="icon logo" width="100" />
-     *
-     */
-    <>
+    <Box component={RouterLink} to="/" sx={{ display: 'inline-block', lineHeight: 0 }}>
       <svg
         baseProfile="tiny"
         height="60px"
@@ -31,11 +27,10 @@ export default function LogoMain() {
         xmlns:ev="http://www.w3.org/2001/xml-events"
         xmlns:xlink="http://www.w3.org/1999/xlink"
       >
-        <defs />
-        <text fill={theme.palette.primary.main} font-family="Arial" font-size="36" font-weight="bold" x="0px" y="40px">
+        <text fill={theme.palette.primary.main} fontFamily="Arial" fontSize="36" fontWeight="bold" x="0px" y="40px">
           Developlogy
         </text>
       </svg>
-    </>
+    </Box>
   );
 }
