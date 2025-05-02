@@ -135,7 +135,7 @@ export default function FooterBlock({ isFull }) {
       <Box sx={{ py: 2.4, borderTop: `1px solid ${theme.palette.divider}`, bgcolor: 'secondary.200' }}>
         <Container>
           <Typography align="center" variant="body2" color="text.secondary">
-            Handcrafted with ♥ by Developlogy | Custom Software Development Studio
+            Handcrafted with ♥ by Developlogy
           </Typography>
         </Container>
       </Box>

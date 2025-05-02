@@ -1,14 +1,14 @@
 // assets
-import techBootstrap from 'assets/images/landing/tech-bootstrap.svg';
-import techReact from 'assets/images/landing/tech-react.svg';
-import techAngular from 'assets/images/landing/tech-angular.svg';
-import techNodeJs from 'assets/images/landing/tech-Node-js.svg';
-import techTailwind from 'assets/images/landing/tech-tailwind.svg';
-import techSpringBoot from 'assets/images/landing/tech-springboot.svg';
-import techJava from 'assets/images/landing/tech-java.svg';
-import techMicroservices from 'assets/images/landing/tech-java.svg';
-import techMongo from 'assets/images/landing/tech-mongodb.svg';
-import techDocker from 'assets/images/landing/tech-docker.svg';
+import techBootstrap from '../assets/images/landing/tech-bootstrap.svg';
+import techReact from '../assets/images/landing/tech-react.svg';
+import techAngular from '../assets/images/landing/tech-angular.svg';
+import techNodeJs from '../assets/images/landing/tech-Node-js.svg';
+import techTailwind from '../assets/images/landing/tech-tailwind.svg';
+import techSpringBoot from '../assets/images/landing/tech-springboot.svg';
+import techJava from '../assets/images/landing/tech-java.svg';
+import techMicroservices from '../assets/images/landing/tech-java.svg';
+import techMongo from '../assets/images/landing/tech-mongodb.svg';
+import techDocker from '../assets/images/landing/tech-docker.svg';
 
 export const techData = [
   {

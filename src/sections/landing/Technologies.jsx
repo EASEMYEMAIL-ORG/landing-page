@@ -36,7 +36,8 @@ export default function TechnologiesPage() {
           >
             <Typography variant="h2">Technologies We Work With</Typography>
             <Typography sx={{ mt: 1.5, fontSize: { xs: '0.95rem', md: '1.05rem' }, color: 'text.secondary' }}>
-              From frontend frameworks to cloud infrastructure, we use modern, battle-tested technologies to build scalable and reliable software.
+              From frontend frameworks to cloud infrastructure, we use modern, battle-tested technologies to build scalable and reliable
+              software.
             </Typography>
           </motion.div>
         </Grid>
