@@ -2,18 +2,13 @@
 import techBootstrap from 'assets/images/landing/tech-bootstrap.svg';
 import techReact from 'assets/images/landing/tech-react.svg';
 import techAngular from 'assets/images/landing/tech-angular.svg';
-import techCodeigniter from 'assets/images/landing/tech-codeigniter.svg';
-import techNet from 'assets/images/landing/tech-net.svg';
-// import techFigma from 'assets/images/landing/tech-figma.svg';
-import techVue from 'assets/images/landing/tech-vuetify.svg';
-import techVuelaravel from 'assets/images/landing/tech-l+v.svg';
-import techNextJS from 'assets/images/landing/tech-nextjs.svg';
-import techLaravelBootstrap from 'assets/images/landing/tech-Laravel+Bootstrap.svg';
-import techDjango from 'assets/images/landing/tech-Django.svg';
-import techFlask from 'assets/images/landing/tech-Flask.svg';
 import techNodeJs from 'assets/images/landing/tech-Node-js.svg';
-import techSvelteKit from 'assets/images/landing/tech-SvelteKit.svg';
 import techTailwind from 'assets/images/landing/tech-tailwind.svg';
+import techSpringBoot from 'assets/images/landing/tech-springboot.svg';
+import techJava from 'assets/images/landing/tech-java.svg';
+import techMicroservices from 'assets/images/landing/tech-java.svg';
+import techMongo from 'assets/images/landing/tech-mongodb.svg';
+import techDocker from 'assets/images/landing/tech-docker.svg';
 
 export const techData = [
   {
@@ -23,7 +18,7 @@ export const techData = [
     target: '_blank',
     tooltipTitle: 'Tailwind',
     description:
-      "Able Pro with Tailwind CSS lets developers create sleek, professional interfaces quickly. Tailwind's utility classes ensure consistent styling across all devices",
+      "Developlogy with Tailwind CSS lets developers create sleek, professional interfaces quickly. Tailwind's utility classes ensure consistent styling across all devices",
     free: null
   },
   {
@@ -33,7 +28,7 @@ export const techData = [
     target: '_blank',
     tooltipTitle: 'Bootstrap',
     description:
-      ' Able Pro Bootstrap 5 - the top choice for responsive, mobile-first design, you can achieve both professional functionality and visual appeal.',
+      ' Developlogy Bootstrap 5 - the top choice for responsive, mobile-first design, you can achieve both professional functionality and visual appeal.',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
   },
   {
@@ -43,7 +38,7 @@ export const techData = [
     target: '_blank',
     tooltipTitle: 'React MUI',
     description:
-      'Able Pro React dashboard template is a powerful tool that utilizes the Material-UI component library to create stunning and intuitive user interfaces.',
+      'Developlogy React dashboard template is a powerful tool that utilizes the Material-UI component library to create stunning and intuitive user interfaces.',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
   },
   {
@@ -53,78 +48,8 @@ export const techData = [
     target: '_blank',
     tooltipTitle: 'Angular',
     description:
-      'Able Pro Angular dashboard template is a powerful tool that utilizes the Google Material component library to create stunning and intuitive user interfaces.',
+      'Developlogy Angular dashboard template is a powerful tool that utilizes the Google Material component library to create stunning and intuitive user interfaces.',
     free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
-  },
-  {
-    label: 'CodeIgniter',
-    image: techCodeigniter,
-    url: 'https://ableproadmin.com/codeigniter/default/public/dashboard-default',
-    target: '_blank',
-    tooltipTitle: 'CodeIgniter',
-    description:
-      'Able Pro CodeIgniter version is a powerful dashboard template built specifically for developers who use the CodeIgniter PHP framework with Bootstrap.',
-    free: null
-  },
-  {
-    label: 'ASP.net',
-    image: techNet,
-    url: 'https://able-pro.azurewebsites.net/Dashboard/Index',
-    target: '_blank',
-    tooltipTitle: 'ASP.net',
-    description:
-      'Able Pro .NET version is a robust dashboard template designed specifically for .NET developers. Its comes with a wide range of pre-built components.',
-    free: null
-  },
-  {
-    label: 'Next js',
-    image: techNextJS,
-    url: 'https://able-pro.azurewebsites.net/Dashboard/Index',
-    target: '_blank',
-    tooltipTitle: 'Next js',
-    description:
-      'Able Pro Next Js dashboard template is a powerful tool that utilizes the Material-UI component library to create stunning and intuitive user interfaces.',
-    free: null
-  },
-  {
-    label: 'Vue',
-    image: techVue,
-    url: 'https://ableproadmin.com/vue/dashboard/default',
-    target: '_blank',
-    tooltipTitle: 'Vue',
-    description:
-      'Able Pro Vue stands out as a versatile and powerful - Vue with Vuetify dashboard combines modern design principles with robust functionality.',
-    free: 'https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template'
-  },
-  {
-    label: 'Vuetify Laravel',
-    image: techVuelaravel,
-    url: 'https://phplaravel-207002-4524103.cloudwaysapps.com/build/dashboards/default',
-    target: '_blank',
-    tooltipTitle: 'Vuetify Laravel',
-    description:
-      'Able Pro Vue stands out as a versatile and powerful - Vue with Vuetify dashboard combines modern design principles with robust functionality.',
-    free: null
-  },
-  {
-    label: 'Laravel Bootstrap',
-    image: techLaravelBootstrap,
-    url: '#!',
-    target: '_self',
-    tooltipTitle: 'Live Preview Not Available',
-    description:
-      'Able Pro Laravel with Bootstrap provides a powerful set of tools and components, crafted specifically for Laravel, to simplify and accelerate your development process.',
-    free: null
-  },
-  {
-    label: 'Django',
-    image: techDjango,
-    url: '#!',
-    target: '_self',
-    tooltipTitle: 'Live Preview Not Available',
-    description:
-      'Able Pro Django is a powerful dashboard template designed for developers. it offers an extensive collection of pre-built components for seamless web development.',
-    free: null
   },
   {
     label: 'Node JS',
@@ -133,37 +58,37 @@ export const techData = [
     target: '_self',
     tooltipTitle: 'Live Preview Not Available',
     description:
-      'Able Pro Node.js combines flexibility and functionality with a variety of pre-built components tailored for Node.js, which make it easier to develop.',
+      'Developlogy Node.js combines flexibility and functionality with a variety of pre-built components tailored for Node.js, which make it easier to develop.',
     free: null
   },
   {
-    label: 'Flask',
-    image: techFlask,
-    url: '#!',
-    target: '_self',
-    tooltipTitle: 'Live Preview Not Available',
-    description:
-      'Able Pro Flask is a versatile dashboard solution that offers a rich set of pre-built components to simplify web development.',
+    label: 'Spring Boot',
+    image: techSpringBoot,
+    description: 'Production-ready backend framework for building secure and scalable APIs in Java.',
     free: null
   },
   {
-    label: 'SvelteKit',
-    image: techSvelteKit,
-    url: '#!',
-    target: '_self',
-    tooltipTitle: 'Live Preview Not Available',
-    description:
-      'Able Pro Svelte provides an extensive toolkit and components, allowing you to build dynamic and responsive interfaces with ease and efficiency.',
+    label: 'Java',
+    image: techJava,
+    description: 'Robust, versatile programming language for backend services and enterprise solutions.',
+    free: null
+  },
+  {
+    label: 'Microservices',
+    image: techMicroservices,
+    description: 'Decoupled architecture approach using REST APIs, Spring Boot, Docker & orchestration.',
+    free: null
+  },
+  {
+    label: 'MongoDB',
+    image: techMongo,
+    description: 'Flexible NoSQL database ideal for fast iterations and dynamic schemas.',
+    free: null
+  },
+  {
+    label: 'Docker',
+    image: techDocker,
+    description: 'Container platform for deploying isolated, scalable applications in any environment.',
     free: null
   }
-  // {
-  //   label: 'Figma',
-  //   image: techFigma,
-  //   url: 'https://www.figma.com/file/6XqmRhRmkr33w0EFD49acY/Able-Pro--v9.0-Figma-Preview?type=design&mode=design&t=4FS2Lw6WxsmJ3RLm-0',
-  //   target: '_blank',
-  //   tooltipTitle: 'Figma',
-  //   description:
-  //     'Able Pro comes with a Figma design file that allows you to customize and fine-tune your dashboard to meet your specific needs.',
-  //   free: null
-  // }
 ];

@@ -75,4 +75,6 @@ const config = {
   themeContrast: false
 };
 
+console.log('Font ->', config.fontFamily);
+
 export default config;

@@ -11,8 +11,36 @@ export default function HeroPage() {
   const theme = useTheme();
 
   return (
-    <Box sx={{ minHeight: '100vh', position: 'relative', pb: 12.5, pt: 10, display: 'flex', alignItems: 'center' }}>
-      <Container>
+    <Box
+      sx={{
+        minHeight: '100vh',
+        position: 'relative',
+        pb: 12.5,
+        pt: 10,
+        display: 'flex',
+        alignItems: 'center',
+        overflow: 'hidden',
+        '::before': {
+          content: '""',
+          position: 'absolute',
+          top: '-20%',
+          left: '-10%',
+          width: '150%',
+          height: '150%',
+          background:
+            'radial-gradient(circle at 20% 30%, rgba(37,161,244,0.2), transparent 60%), radial-gradient(circle at 80% 50%, rgba(249,31,169,0.2), transparent 60%)',
+          animation: 'bgMove 25s ease-in-out infinite',
+          zIndex: 0,
+          filter: 'blur(100px)'
+        },
+        '@keyframes bgMove': {
+          '0%': { transform: 'translateY(0px) scale(1)' },
+          '50%': { transform: 'translateY(-20px) scale(1.05)' },
+          '100%': { transform: 'translateY(0px) scale(1)' }
+        }
+      }}
+    >
+      <Container sx={{ position: 'relative', zIndex: 1 }}>
         <Grid container alignItems="center" justifyContent="center" spacing={2} sx={{ pt: { md: 0, xs: 10 }, pb: { md: 0, xs: 22 } }}>
           <Grid item xs={12} md={10}>
             <Grid container spacing={3} sx={{ textAlign: 'center' }}>
@@ -30,7 +58,7 @@ export default function HeroPage() {
                       lineHeight: 1.2
                     }}
                   >
-                    Build Scalable{' '}
+                    Scalable{' '}
                     <Typography
                       variant="h1"
                       component="span"
@@ -44,9 +72,9 @@ export default function HeroPage() {
                         '@keyframes move-bg': { '100%': { backgroundPosition: '400% 0' } }
                       }}
                     >
-                      Digital Solutions
+                      Software Solutions
                     </Typography>{' '}
-                    with Developlogy
+                    Built for the Future
                   </Typography>
                 </motion.div>
               </Grid>
@@ -66,9 +94,8 @@ export default function HeroPage() {
                         lineHeight: 1.7
                       }}
                     >
-                      At Developlogy, we specialize in custom software development tailored for startups, businesses, and entrepreneurs
-                      who need reliable, scalable digital solutions. Founded by Naveed Pagdiwale, we bring deep technical expertise and a
-                      commitment to clean, future-proof code.
+                      Developlogy is your partner in custom software development—designed for startups, entrepreneurs, and businesses that demand
+                      reliability, scalability, and clean code. Founded by Naveed Pagdiwale, we help you turn bold ideas into robust software.
                     </Typography>
                   </motion.div>
                 </Grid>
@@ -83,7 +110,7 @@ export default function HeroPage() {
                   <Grid container spacing={2} justifyContent="center">
                     <Grid item>
                       <Button variant="contained" color="primary" component={RouterLink} to="/services" size="large">
-                        Our Services
+                        Explore Services
                       </Button>
                     </Grid>
                     <Grid item>

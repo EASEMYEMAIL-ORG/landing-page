@@ -1,43 +1,33 @@
 import PropTypes from 'prop-types';
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid2';
+import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
-// third-party
 import { motion } from 'framer-motion';
 import Marquee from 'react-fast-marquee';
 
-// project-imports
 import FadeInWhenVisible from './Animation';
 import MainCard from 'components/MainCard';
 import { ThemeDirection } from 'config';
-
-// assets
 import Avatar from 'components/@extended/Avatar';
-import Avatar1 from 'assets/images/users/avatar-6.png';
-import Avatar2 from 'assets/images/users/avatar-1.png';
-import Avatar3 from 'assets/images/users/avatar-2.png';
-import Avatar4 from 'assets/images/users/avatar-3.png';
-import Avatar5 from 'assets/images/users/avatar-4.png';
-import Avatar6 from 'assets/images/users/avatar-5.png';
-import Avatar7 from 'assets/images/users/avatar-7.png';
-import Avatar8 from 'assets/images/users/avatar-8.png';
 
-// ================================|| SLIDER - ITEMS ||================================ //
+// Sample avatars (same as current setup)
+import Avatar1 from 'assets/images/users/avatar-1.png';
+import Avatar2 from 'assets/images/users/avatar-2.png';
+import Avatar3 from 'assets/images/users/avatar-3.png';
+import Avatar4 from 'assets/images/users/avatar-4.png';
 
 function Item({ item }) {
   return (
     <MainCard sx={{ width: { xs: '300px', md: '420px' }, cursor: 'pointer', my: 0.2, mx: 1.5 }}>
       <Stack direction="row" sx={{ gap: 2, alignItems: 'flex-start' }}>
-        <Avatar alt="Avatar" size="lg" src={item.image}></Avatar>
+        <Avatar alt={item.name} size="lg" src={item.image} />
         <Stack>
-          <Typography>{item.text}</Typography>
+          <Typography sx={{ fontStyle: 'italic', mb: 1 }}>{item.text}</Typography>
           <Typography>
-            <Typography component="span" variant="caption">
+            <Typography component="span" variant="caption" sx={{ fontWeight: 600 }}>
               {item.name}
             </Typography>
             {' - '}
@@ -51,108 +41,75 @@ function Item({ item }) {
   );
 }
 
-// ==============================|| LANDING - TestimonialPage ||============================== //
+Item.propTypes = { item: PropTypes.object };
 
 export default function TestimonialPage() {
   const theme = useTheme();
   const items = [
     {
       image: Avatar1,
-      text: '“Code quality is amazing. Design is astonishing. very easy to customize .. and any developer can use it with ease.“',
-      name: 'shahabblouch',
-      designation: 'Code Quality'
+      text: '“Developlogy helped us bring our SaaS product to life in record time. Their backend architecture was rock solid.”',
+      name: 'Ankit Mehra',
+      designation: 'Founder, Finverse'
     },
     {
       image: Avatar2,
-      text: '“I get all what I need for my project from this template so I can focus to back end side. The template looks fantastic and the support is fast. Thank you.“',
-      name: 'menhook',
-      designation: 'Feature Availability'
+      text: '“They handled our API integrations seamlessly. Super responsive and professional throughout the engagement.”',
+      name: 'Priya R.',
+      designation: 'CTO, MedConnect'
     },
     {
       image: Avatar3,
-      text: '“Design is very good.“',
-      name: 'dimas_ferian',
-      designation: 'Design Quality'
+      text: '“Highly recommend for any startup looking for a reliable tech partner. Fast, clean code, great UI support.”',
+      name: 'Karan Sethi',
+      designation: 'Product Manager, RetailBridge'
     },
     {
       image: Avatar4,
-      text: '“Amazing template for fast develop“',
-      name: 'devbardbudist',
-      designation: 'Customizability'
-    },
-    {
-      image: Avatar5,
-      text: '“The author is very nice and solved my problem inmediately “',
-      name: 'richitela',
-      designation: 'Customer Support'
-    },
-    {
-      image: Avatar6,
-      text: '“I love the looks of Able Pro 7.0. I really like the colors you guys have chosen for this theme. It looks really nice.. 💎“',
-      name: 'ritelogic',
-      designation: 'Other'
-    },
-    {
-      image: Avatar7,
-      text: '“The author is very nice and solved my problem inmediately 😍 “',
-      name: 'richitela',
-      designation: 'Customer Support'
-    },
-    {
-      image: Avatar8,
-      text: '“An amazing template, Very good design, good quality code and also very good customer support.“',
-      name: 'macugi',
-      designation: 'Code Quality'
+      text: '“Naveed and team stepped in when our app was mid-build. Their full-stack expertise saved our project.”',
+      name: 'Sanya Kapoor',
+      designation: 'Ops Lead, QuickFleet'
     }
   ];
+
   return (
     <>
-      <Box sx={{ mt: { md: 15, xs: 2.5 } }}>
+      <Box sx={{ mt: { md: 15, xs: 5 } }}>
         <Container>
-          <Grid container spacing={2} sx={{ justifyContent: 'center', textAlign: 'center', marginBottom: 4, paddingTop: 3 }}>
-            <Grid size={12}>
+          <Grid container spacing={2} sx={{ justifyContent: 'center', textAlign: 'center', mb: 4, pt: 3 }}>
+            <Grid item xs={12}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30,
-                  delay: 0.2
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}
               >
                 <Typography variant="h2">
-                  They{' '}
-                  <Typography variant="h2" component="span" sx={{ color: 'primary.main' }}>
-                    love
-                  </Typography>{' '}
-                  Able Pro, Now your turn 😍
+                  What Our{' '}
+                  <Typography component="span" variant="h2" sx={{ color: 'primary.main' }}>
+                    Clients Say
+                  </Typography>
                 </Typography>
               </motion.div>
             </Grid>
-            <Grid size={{ xs: 12, md: 7 }}>
+            <Grid item xs={12} md={7}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
-                transition={{
-                  type: 'spring',
-                  stiffness: 150,
-                  damping: 30,
-                  delay: 0.4
-                }}
+                transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}
               >
                 <Typography>
-                  We take pride in our Dashboard development, which has been consistently rated 4.7/5 by our satisfied customers. It brings
-                  us joy to share the positive feedback we have received from our loyal clients.
+                  We’re proud to partner with founders, product owners, and teams who trust us to turn ideas into production-ready software.
+                  Here’s what they have to say.
                 </Typography>
               </motion.div>
             </Grid>
           </Grid>
         </Container>
       </Box>
-      <Box sx={{ mb: { md: 10, xs: 2.5 } }}>
+
+      <Box sx={{ mb: { md: 10, xs: 5 } }}>
         <Grid container spacing={4}>
-          <Grid sx={{ direction: theme.direction }} size={12}>
+          <Grid item xs={12} sx={{ direction: theme.direction }}>
             <FadeInWhenVisible>
               <Marquee pauseOnHover direction={theme.direction === ThemeDirection.RTL ? 'right' : 'left'} gradient={false}>
                 {items.map((item, index) => (
@@ -161,7 +118,7 @@ export default function TestimonialPage() {
               </Marquee>
             </FadeInWhenVisible>
           </Grid>
-          <Grid sx={{ direction: theme.direction }} size={12}>
+          <Grid item xs={12} sx={{ direction: theme.direction }}>
             <FadeInWhenVisible>
               <Marquee pauseOnHover direction={theme.direction === ThemeDirection.RTL ? 'left' : 'right'} gradient={false}>
                 {items.map((item, index) => (
@@ -175,5 +132,3 @@ export default function TestimonialPage() {
     </>
   );
 }
-
-Item.propTypes = { item: PropTypes.object };
