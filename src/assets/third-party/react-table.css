@@ -52,3 +52,7 @@
 .resizer.isResizing {
   opacity: 1;
 }
+
+.MuiTableContainer-root {
+  border-radius: 0 !important;
+}

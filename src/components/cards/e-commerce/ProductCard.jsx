@@ -3,9 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import CardContent from '@mui/material/CardContent';
@@ -14,6 +12,7 @@ import Divider from '@mui/material/Divider';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // project-imports
 import MainCard from 'components/MainCard';
@@ -30,8 +29,6 @@ import { Heart } from 'iconsax-react';
 // ==============================|| PRODUCT CARD ||============================== //
 
 export default function ProductCard({ id, color, name, brand, offer, isStock, image, description, offerPrice, salePrice, rating }) {
-  const theme = useTheme();
-
   const [wishlisted, setWishlisted] = useState(false);
   const { cart } = useGetCart();
 
@@ -39,7 +36,7 @@ export default function ProductCard({ id, color, name, brand, offer, isStock, im
     addToCart({ id, name, image, salePrice, offerPrice, color, size: 8, quantity: 1, description }, cart.products);
     openSnackbar({
       open: true,
-      message: 'Add To Cart Success',
+      message: 'Product added to cart',
       variant: 'alert',
 
       alert: {
@@ -52,7 +49,7 @@ export default function ProductCard({ id, color, name, brand, offer, isStock, im
     setWishlisted(!wishlisted);
     openSnackbar({
       open: true,
-      message: 'Added to favourites',
+      message: !wishlisted ? 'Added to favourites' : 'Removed from favourites',
       variant: 'alert',
 
       alert: {
@@ -88,51 +85,55 @@ export default function ProductCard({ id, color, name, brand, offer, isStock, im
       </Box>
       <Stack
         direction="row"
-        alignItems="center"
-        justifyContent="space-between"
-        sx={{ width: '100%', position: 'absolute', top: 0, pt: 1.75, pl: 2, pr: 1 }}
+        sx={{ alignItems: 'center', justifyContent: 'space-between', width: '100%', position: 'absolute', top: 0, pt: 1.75, pl: 2, pr: 1 }}
       >
         {!isStock && <Chip variant="light" color="error" size="small" label="Sold out" />}
         {offer && <Chip label={offer} variant="combined" color="success" size="small" />}
-        <IconButton color="secondary" sx={{ ml: 'auto', '&:hover': { bgcolor: 'transparent' } }} onClick={addToFavourite}>
-          {wishlisted ? (
-            <Heart variant="Bold" style={{ fontSize: '1.15rem', color: theme.palette.error.main }} />
-          ) : (
-            <Heart style={{ fontSize: '1.15rem' }} />
-          )}
+        <IconButton
+          color={wishlisted ? 'error' : 'secondary'}
+          sx={{ ml: 'auto', '&:hover': { bgcolor: 'transparent' } }}
+          onClick={addToFavourite}
+        >
+          <Heart variant={wishlisted ? 'Bold' : 'Linear'} style={{ fontSize: '1.15rem' }} />
         </IconButton>
       </Stack>
       <Divider />
       <CardContent sx={{ p: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Stack>
               <Typography
                 component={Link}
                 to={`/apps/e-commerce/product-details/${id}`}
-                color="text.primary"
                 variant="h5"
-                sx={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', display: 'block', textDecoration: 'none' }}
+                sx={{
+                  color: 'text.primary',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                  display: 'block',
+                  textDecoration: 'none'
+                }}
               >
                 {name}
               </Typography>
-              <Typography variant="h6" color="text.secondary">
+              <Typography variant="h6" sx={{ color: 'text.secondary' }}>
                 {brand}
               </Typography>
             </Stack>
           </Grid>
-          <Grid item xs={12}>
-            <Stack direction="row" justifyContent="space-between" alignItems="flex-end" flexWrap="wrap" rowGap={1.75}>
+          <Grid size={12}>
+            <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 1.75 }}>
               <Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
+                <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
                   <Typography variant="h5">${offerPrice}</Typography>
                   {salePrice && (
-                    <Typography variant="h6" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
+                    <Typography variant="h6" sx={{ color: 'text.secondary', textDecoration: 'line-through' }}>
                       ${salePrice}
                     </Typography>
                   )}
                 </Stack>
-                <Stack direction="row" alignItems="flex-start">
+                <Stack direction="row" sx={{ alignItems: 'flex-start' }}>
                   <Rating precision={0.5} name="size-small" value={rating} size="small" readOnly />
                   <Typography variant="caption">({rating?.toFixed(1)})</Typography>
                 </Stack>

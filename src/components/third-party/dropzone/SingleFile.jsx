@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import CardMedia from '@mui/material/CardMedia';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 // third-party
 import { useDropzone } from 'react-dropzone';
 
 // project-imports
-import RejectionFiles from './RejectionFiles';
 import PlaceholderContent from './PlaceholderContent';
+import RejectionFiles from './RejectionFiles';
 
 const DropzoneWrapper = styled('div')(({ theme }) => ({
   outline: 'none',
@@ -28,8 +29,6 @@ const DropzoneWrapper = styled('div')(({ theme }) => ({
 // ==============================|| UPLOAD - SINGLE FILE ||============================== //
 
 export default function SingleFileUpload({ error, file, setFieldValue, sx }) {
-  const theme = useTheme();
-
   const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
     accept: { 'image/*': [] },
     multiple: false,
@@ -44,18 +43,19 @@ export default function SingleFileUpload({ error, file, setFieldValue, sx }) {
   const thumbs =
     file &&
     file.map((item) => (
-      <img
+      <CardMedia
         key={item.name}
+        component="img"
         alt={item.name}
         src={item.preview}
-        style={{
+        sx={{
           top: 8,
           left: 8,
           borderRadius: 2,
           position: 'absolute',
           width: 'calc(100% - 16px)',
           height: 'calc(100% - 16px)',
-          background: theme.palette.background.paper
+          background: 'background.paper'
         }}
         onLoad={() => {
           URL.revokeObjectURL(item.preview);
@@ -85,7 +85,7 @@ export default function SingleFileUpload({ error, file, setFieldValue, sx }) {
       {fileRejections.length > 0 && <RejectionFiles fileRejections={fileRejections} />}
 
       {file && file.length > 0 && (
-        <Stack direction="row" justifyContent="flex-end" sx={{ mt: 1.5 }}>
+        <Stack direction="row" sx={{ justifyContent: 'flex-end', mt: 1.5 }}>
           <Button variant="contained" color="error" onClick={onRemove}>
             Remove
           </Button>

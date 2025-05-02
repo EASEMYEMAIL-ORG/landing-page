@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 // material-ui
-import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // ==============================|| PROGRESS - CIRCULAR LABEL ||============================== //
 
@@ -22,7 +22,7 @@ export default function CircularWithLabel({ value, ...others }) {
           justifyContent: 'center'
         }}
       >
-        <Typography variant="caption" color="text.secondary">{`${Math.round(value)}%`}</Typography>
+        <Typography variant="caption" sx={{ color: 'text.secondary' }}>{`${Math.round(value)}%`}</Typography>
       </Box>
     </Box>
   );

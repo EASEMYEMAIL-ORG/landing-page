@@ -1,14 +1,10 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
-//project-imports
-import { ThemeMode } from 'config';
+import Box from '@mui/material/Box';
 
 // assets
 import { Code1, Link1 } from 'iconsax-react';
@@ -16,22 +12,20 @@ import { Code1, Link1 } from 'iconsax-react';
 // ==============================|| COMPONENTS - BREADCRUMBS  ||============================== //
 
 export default function ComponentHeader({ title, caption, directory, link }) {
-  const theme = useTheme();
-
   return (
-    <Box sx={{ pl: { xs: 1.5, sm: 3, xl: 8 } }}>
-      <Stack spacing={1.25}>
+    <Box sx={{ pl: { xs: 2, md: 2.5, xl: 8 } }}>
+      <Stack sx={{ gap: 1.25 }}>
         <Typography variant="h2" sx={{ fontWeight: 700 }}>
           {title}
         </Typography>
         {caption && (
-          <Typography variant="h6" color="text.secondary">
+          <Typography variant="h6" sx={{ color: 'text.secondary' }}>
             {caption}
           </Typography>
         )}
         {directory && (
-          <Typography variant="caption" color="text.secondary">
-            <Stack direction="row" alignItems="center" columnGap={1}>
+          <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+            <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
               <Code1 size={14} />
               {directory}
             </Stack>
@@ -46,18 +40,15 @@ export default function ComponentHeader({ title, caption, directory, link }) {
               component={Link}
               href={link}
               target="_blank"
-              sx={{
+              sx={(theme) => ({
                 fontWeight: 500,
                 bgcolor: 'secondary.light',
                 color: 'secondary.darker',
                 '&:hover': {
                   color: 'secondary.lighter',
-                  ...(theme.palette.mode === ThemeMode.DARK && {
-                    bgcolor: 'secondary.200',
-                    color: 'secondary.darker'
-                  })
+                  ...theme.applyStyles('dark', { bgcolor: 'secondary.200', color: 'secondary.darker' })
                 }
-              }}
+              })}
             >
               Reference
             </Button>

@@ -51,7 +51,8 @@ export default function Switch(theme) {
         },
         switchBase: {
           '&.Mui-checked': {
-            color: '#fff',
+            color: theme.palette.background.paper,
+            ...theme.applyStyles('dark', { color: theme.palette.text.primary }),
             '& + .MuiSwitch-track': {
               opacity: 1
             },

@@ -2,18 +2,18 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 
 // material-ui
-import Box from '@mui/material/Box';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 
 // third-party
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // project-imports
-import SyntaxHighlight from 'utils/SyntaxHighlight';
 import IconButton from 'components/@extended/IconButton';
+import SyntaxHighlight from 'utils/SyntaxHighlight';
 
 // assets
 import { Code, Copy } from 'iconsax-react';

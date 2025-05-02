@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
-// third party
+// third-party
 import { motion } from 'framer-motion';
 import Marquee from 'react-fast-marquee';
 
@@ -32,7 +32,7 @@ import Avatar8 from 'assets/images/users/avatar-8.png';
 function Item({ item }) {
   return (
     <MainCard sx={{ width: { xs: '300px', md: '420px' }, cursor: 'pointer', my: 0.2, mx: 1.5 }}>
-      <Stack direction="row" alignItems="flex-start" spacing={2}>
+      <Stack direction="row" sx={{ gap: 2, alignItems: 'flex-start' }}>
         <Avatar alt="Avatar" size="lg" src={item.image}></Avatar>
         <Stack>
           <Typography>{item.text}</Typography>
@@ -41,7 +41,7 @@ function Item({ item }) {
               {item.name}
             </Typography>
             {' - '}
-            <Typography component="span" color="text.secondary">
+            <Typography component="span" sx={{ color: 'text.secondary' }}>
               {item.designation}
             </Typography>
           </Typography>
@@ -56,30 +56,35 @@ function Item({ item }) {
 export default function TestimonialPage() {
   const theme = useTheme();
   const items = [
-    { image: Avatar1, text: '“Amazing template for fast develop.💎“', name: 'devbar', designation: 'Customizability' },
     {
-      image: Avatar2,
-      text: '“Code quality is amazing. Design is astonishing. very easy to customize..😍“',
+      image: Avatar1,
+      text: '“Code quality is amazing. Design is astonishing. very easy to customize .. and any developer can use it with ease.“',
       name: 'shahabblouch',
       designation: 'Code Quality'
     },
     {
+      image: Avatar2,
+      text: '“I get all what I need for my project from this template so I can focus to back end side. The template looks fantastic and the support is fast. Thank you.“',
+      name: 'menhook',
+      designation: 'Feature Availability'
+    },
+    {
       image: Avatar3,
-      text: '“This has been one of my favorite admin dashboards to use. 😍“',
-      name: 'htmhell',
+      text: '“Design is very good.“',
+      name: 'dimas_ferian',
       designation: 'Design Quality'
     },
     {
       image: Avatar4,
-      text: '“Excellent support, if we need any modification, they are doing immediately“',
-      name: 'hemchandkodali',
-      designation: 'Customer Support'
+      text: '“Amazing template for fast develop“',
+      name: 'devbardbudist',
+      designation: 'Customizability'
     },
     {
       image: Avatar5,
-      text: '“For developers like me, this is the total package! 😍 “',
-      name: 'sumaranjum',
-      designation: 'Feature Availability'
+      text: '“The author is very nice and solved my problem inmediately “',
+      name: 'richitela',
+      designation: 'Customer Support'
     },
     {
       image: Avatar6,
@@ -95,17 +100,17 @@ export default function TestimonialPage() {
     },
     {
       image: Avatar8,
-      text: '“Perfect for my need. Elegant look n feel with blazing fast code. 💎“',
-      name: 'Genstiade',
-      designation: 'Feature Availability'
+      text: '“An amazing template, Very good design, good quality code and also very good customer support.“',
+      name: 'macugi',
+      designation: 'Code Quality'
     }
   ];
   return (
     <>
       <Box sx={{ mt: { md: 15, xs: 2.5 } }}>
         <Container>
-          <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', marginBottom: 4 }}>
-            <Grid item xs={12}>
+          <Grid container spacing={2} sx={{ justifyContent: 'center', textAlign: 'center', marginBottom: 4, paddingTop: 3 }}>
+            <Grid size={12}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
@@ -118,14 +123,14 @@ export default function TestimonialPage() {
               >
                 <Typography variant="h2">
                   They{' '}
-                  <Typography variant="h2" component="span" sx={{ color: theme.palette.primary.main }}>
+                  <Typography variant="h2" component="span" sx={{ color: 'primary.main' }}>
                     love
                   </Typography>{' '}
                   Able Pro, Now your turn 😍
                 </Typography>
               </motion.div>
             </Grid>
-            <Grid item xs={12} md={7}>
+            <Grid size={{ xs: 12, md: 7 }}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
@@ -137,7 +142,7 @@ export default function TestimonialPage() {
                 }}
               >
                 <Typography>
-                  We take pride in our Dashboard development, which has been consistently rated 4.6/5 by our satisfied customers. It brings
+                  We take pride in our Dashboard development, which has been consistently rated 4.7/5 by our satisfied customers. It brings
                   us joy to share the positive feedback we have received from our loyal clients.
                 </Typography>
               </motion.div>
@@ -147,7 +152,7 @@ export default function TestimonialPage() {
       </Box>
       <Box sx={{ mb: { md: 10, xs: 2.5 } }}>
         <Grid container spacing={4}>
-          <Grid item xs={12} sx={{ direction: theme.direction }}>
+          <Grid sx={{ direction: theme.direction }} size={12}>
             <FadeInWhenVisible>
               <Marquee pauseOnHover direction={theme.direction === ThemeDirection.RTL ? 'right' : 'left'} gradient={false}>
                 {items.map((item, index) => (
@@ -156,7 +161,7 @@ export default function TestimonialPage() {
               </Marquee>
             </FadeInWhenVisible>
           </Grid>
-          <Grid item xs={12} sx={{ direction: theme.direction }}>
+          <Grid sx={{ direction: theme.direction }} size={12}>
             <FadeInWhenVisible>
               <Marquee pauseOnHover direction={theme.direction === ThemeDirection.RTL ? 'left' : 'right'} gradient={false}>
                 {items.map((item, index) => (

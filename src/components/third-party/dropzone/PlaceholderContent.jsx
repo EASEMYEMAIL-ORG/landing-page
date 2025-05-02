@@ -18,14 +18,11 @@ export default function PlaceholderContent({ type }) {
     <>
       {type !== DropzopType.STANDARD && (
         <Stack
-          spacing={2}
-          alignItems="center"
-          justifyContent="center"
           direction={{ xs: 'column', md: 'row' }}
-          sx={{ width: 1, textAlign: { xs: 'center', md: 'left' } }}
+          sx={{ gap: 2, alignItems: 'center', justifyContent: 'center', width: 1, textAlign: { xs: 'center', md: 'left' } }}
         >
           <CardMedia component="img" image={UploadCover} sx={{ width: 150 }} />
-          <Stack sx={{ p: 3 }} spacing={1}>
+          <Stack sx={{ gap: 1, p: 3 }}>
             <Typography variant="h5">Drag & Drop or Select file</Typography>
 
             <Typography color="secondary">
@@ -39,7 +36,7 @@ export default function PlaceholderContent({ type }) {
         </Stack>
       )}
       {type === DropzopType.STANDARD && (
-        <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
+        <Stack sx={{ alignItems: 'center', justifyContent: 'center', height: 1 }}>
           <Camera style={{ fontSize: '32px' }} />
         </Stack>
       )}

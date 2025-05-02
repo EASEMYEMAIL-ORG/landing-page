@@ -12,8 +12,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 
 // third-party
-import * as yup from 'yup';
 import { Formik, Form } from 'formik';
+import * as yup from 'yup';
 
 // project-imports
 import IconButton from 'components/@extended/IconButton';
@@ -42,10 +42,11 @@ export default function CellEditable({ getValue: initialValue, row: { index }, c
 
   let element;
   let userInfoSchema;
+
   switch (id) {
     case 'email':
       userInfoSchema = yup.object().shape({
-        userInfo: yup.string().email('Enter valid email ').required('Email is a required field')
+        userInfo: yup.string().email('Enter valid email ').required('Email is required')
       });
       break;
     case 'age':
@@ -60,12 +61,17 @@ export default function CellEditable({ getValue: initialValue, row: { index }, c
       break;
     case 'visits':
       userInfoSchema = yup.object().shape({
-        userInfo: yup.number().typeError('Visits must be number').required('Required')
+        userInfo: yup.number().typeError('Visits must be number').required('Visits are required')
+      });
+      break;
+    case 'lastName':
+      userInfoSchema = yup.object().shape({
+        userInfo: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name is required')
       });
       break;
     default:
       userInfoSchema = yup.object().shape({
-        userInfo: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Name is Required')
+        userInfo: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('First name is required')
       });
       break;
   }
@@ -96,10 +102,12 @@ export default function CellEditable({ getValue: initialValue, row: { index }, c
                   onBlur={handleBlur}
                   error={touched.userInfo && Boolean(errors.userInfo)}
                   helperText={touched.userInfo && errors.userInfo && errors.userInfo}
-                  sx={{
+                  sx={(theme) => ({
                     '& .MuiOutlinedInput-input': { py: 0.75, px: 1, minWidth: { xs: 100 } },
-                    '& .MuiOutlinedInput-notchedOutline': { border: 'none' }
-                  }}
+                    '& .MuiOutlinedInput-notchedOutline': {
+                      border: touched.userInfo && errors.userInfo ? `1px solid ${theme.palette.error.main}` : 'none'
+                    }
+                  })}
                 />
               </Form>
             )}
@@ -140,7 +148,7 @@ export default function CellEditable({ getValue: initialValue, row: { index }, c
             </Box>
           ) : (
             <>
-              <Stack direction="row" alignItems="center" spacing={1} sx={{ pl: 1, minWidth: 120 }}>
+              <Stack direction="row" sx={{ gap: 1, alignItems: 'center', pl: 1, minWidth: 120 }}>
                 <Slider
                   value={value}
                   min={0}

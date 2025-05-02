@@ -11,6 +11,7 @@ import Palette from './palette';
 import Typography from './typography';
 import CustomShadows from './shadows';
 import componentsOverride from './overrides';
+import GlobalStyles from './GlobalStyles';
 
 import { HEADER_HEIGHT, ThemeMode } from 'config';
 import useConfig from 'hooks/useConfig';
@@ -32,11 +33,7 @@ export default function ThemeCustomization({ children }) {
 
   const theme = useMemo(() => Palette(themeMode, presetColor, themeContrast), [themeMode, presetColor, themeContrast]);
 
-  const themeTypography = useMemo(
-    () => Typography(fontFamily),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [fontFamily]
-  );
+  const themeTypography = useMemo(() => Typography(fontFamily), [fontFamily]);
   const themeCustomShadows = useMemo(() => CustomShadows(theme), [theme]);
 
   const themeOptions = useMemo(
@@ -74,7 +71,8 @@ export default function ThemeCustomization({ children }) {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
+        <GlobalStyles />
         {children}
       </ThemeProvider>
     </StyledEngineProvider>

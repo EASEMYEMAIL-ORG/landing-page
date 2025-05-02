@@ -1,13 +1,12 @@
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // project-imports
 import FadeInWhenVisible from './Animation';
@@ -16,24 +15,23 @@ import { useIspValue } from 'hooks/useIspValue';
 // assets
 import { ExportSquare } from 'iconsax-react';
 
-// ==============================|| LANDING - FreePage ||============================== //
+// ==============================|| LANDING - FREE PAGE ||============================== //
 
 export default function FreePage() {
-  const theme = useTheme();
   const ispValueAvailable = useIspValue();
 
   return (
     <Container>
-      <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ mt: { md: 10, xs: 2.5 }, mb: { md: 10, xs: 2.5 } }}>
-        <Grid item xs={12} md={8}>
+      <Grid container spacing={3} sx={{ alignItems: 'center', justifyContent: 'center', mt: { md: 10, xs: 2.5 }, mb: { md: 10, xs: 2.5 } }}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <FadeInWhenVisible>
-            <Grid container spacing={2} justifyContent="center">
-              <Grid item xs={12}>
+            <Grid container spacing={2} sx={{ justifyContent: 'center', paddingTop: 3 }}>
+              <Grid size={12}>
                 <Typography variant="h2">
                   <Box
                     component="span"
                     sx={{
-                      color: theme.palette.primary.main
+                      color: 'primary.main'
                     }}
                   >
                     TRY{' '}
@@ -41,16 +39,16 @@ export default function FreePage() {
                   BEFORE BUY
                 </Typography>
               </Grid>
-              <Grid item xs={12}>
+              <Grid size={12}>
                 <Typography>Download the Free MIT Able Pro Dashboard Template before make your purchase decision.</Typography>
               </Grid>
             </Grid>
           </FadeInWhenVisible>
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <FadeInWhenVisible>
-            <Grid container spacing={2} justifyContent="end" alignItems="center">
-              <Grid item>
+            <Grid container spacing={2} sx={{ justifyContent: 'end', alignItems: 'center', paddingTop: 3 }}>
+              <Grid>
                 <Button
                   variant="outlined"
                   color="secondary"
@@ -62,7 +60,7 @@ export default function FreePage() {
                   Check out Pro Version
                 </Button>
               </Grid>
-              <Grid item>
+              <Grid>
                 <Button
                   variant="contained"
                   color="primary"

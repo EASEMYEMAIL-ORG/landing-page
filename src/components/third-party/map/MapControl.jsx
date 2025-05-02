@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 // third-party
 import { NavigationControl, FullscreenControl, ScaleControl, GeolocateControl } from 'react-map-gl';
 
-// project-import
+// project-imports
 import MapControlsStyled from './MapControlsStyled';
 
 // ==============================|| MAP BOX - CONTROL ||============================== //

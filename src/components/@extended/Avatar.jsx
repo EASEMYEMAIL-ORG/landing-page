@@ -1,11 +1,10 @@
 import PropTypes from 'prop-types';
 
 // material-ui
-import { styled, useTheme } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import MuiAvatar from '@mui/material/Avatar';
 
 // project-imports
-import { ThemeMode } from 'config';
 import getColors from 'utils/getColors';
 
 function getColorStyle({ theme, color, type }) {
@@ -15,7 +14,8 @@ function getColorStyle({ theme, color, type }) {
   switch (type) {
     case 'filled':
       return {
-        color: color === 'secondary' && theme.palette.mode === ThemeMode.DARK ? lighter : contrastText,
+        color: contrastText,
+        ...theme.applyStyles('dark', { ...(color === 'secondary' && { color: lighter }) }),
         backgroundColor: main
       };
     case 'outlined':
@@ -30,12 +30,13 @@ function getColorStyle({ theme, color, type }) {
         color: main,
         border: '1px solid',
         borderColor: light,
-        backgroundColor: lighter + 80
+        backgroundColor: alpha(lighter, 0.8)
       };
     default:
       return {
         color: main,
-        backgroundColor: lighter + 80
+        backgroundColor: alpha(lighter, 0.8),
+        ...theme.applyStyles('dark', { backgroundColor: alpha(lighter, 0.25) })
       };
   }
 }
@@ -120,10 +121,8 @@ const AvatarStyle = styled(MuiAvatar, { shouldForwardProp: (prop) => prop !== 'c
 );
 
 export default function Avatar({ children, color = 'primary', type, size = 'md', ...others }) {
-  const theme = useTheme();
-
   return (
-    <AvatarStyle theme={theme} color={color} type={type} size={size} {...others}>
+    <AvatarStyle color={color} type={type} size={size} {...others}>
       {children}
     </AvatarStyle>
   );

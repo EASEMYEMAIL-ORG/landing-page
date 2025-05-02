@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import MuiTooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 
 // project-imports
 import getColors from 'utils/getColors';
@@ -43,10 +43,9 @@ const TooltipStyle = styled(({ className, ...props }) => <MuiTooltip {...props} 
 }));
 
 export default function CustomTooltip({ children, arrow, labelColor = '', ...rest }) {
-  const theme = useTheme();
   return (
-    <Box display="flex">
-      <TooltipStyle arrow={arrow} {...rest} theme={theme} labelColor={labelColor}>
+    <Box sx={{ display: 'flex' }}>
+      <TooltipStyle arrow={arrow} {...rest} labelColor={labelColor}>
         {children}
       </TooltipStyle>
     </Box>

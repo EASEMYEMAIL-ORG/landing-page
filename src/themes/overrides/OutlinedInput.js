@@ -1,7 +1,6 @@
 // project-imports
 import getColors from 'utils/getColors';
 import getShadow from 'utils/getShadow';
-import { ThemeMode } from 'config';
 
 // ==============================|| OVERRIDES - INPUT BORDER & SHADOWS ||============================== //
 
@@ -35,7 +34,8 @@ export default function OutlinedInput(theme) {
           padding: 14
         },
         notchedOutline: {
-          borderColor: theme.palette.mode === ThemeMode.DARK ? theme.palette.secondary[200] : theme.palette.secondary[400]
+          borderColor: theme.palette.secondary[400],
+          ...theme.applyStyles('dark', { borderColor: theme.palette.secondary[200] })
         },
         root: {
           '& svg': {

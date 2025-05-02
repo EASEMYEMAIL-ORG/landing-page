@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 
 // project-imports
 import getColors from 'utils/getColors';
-import { ThemeMode } from 'config';
 
 // assets
 import { Stop, TickSquare, MinusSquare } from 'iconsax-react';
@@ -16,12 +15,8 @@ function getColorStyle({ color, theme }) {
   return {
     '&:hover': {
       backgroundColor: color === 'secondary' ? lighter : lighter + 50,
-      ...(theme.palette.mode === ThemeMode.DARK && {
-        backgroundColor: color === 'secondary' ? lighter + 50 : lighter + 20
-      }),
-      '& .icon': {
-        borderColor: main
-      }
+      ...theme.applyStyles('dark', { backgroundColor: color === 'secondary' ? lighter + 50 : lighter + 20 }),
+      '& .icon': { borderColor: main }
     },
     '&.Mui-focusVisible': {
       outline: `2px solid ${dark}`,

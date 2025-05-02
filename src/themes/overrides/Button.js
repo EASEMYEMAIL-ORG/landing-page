@@ -4,7 +4,6 @@ import { alpha } from '@mui/material/styles';
 // project-imports
 import getColors from 'utils/getColors';
 import getShadow from 'utils/getShadow';
-import { ThemeMode } from 'config';
 
 // ==============================|| BUTTON - COLORS ||============================== //
 
@@ -24,29 +23,21 @@ function getColorStyle({ variant, color, theme }) {
   switch (variant) {
     case 'contained':
       return {
-        ...(color === 'secondary' && {
-          backgroundColor: theme.palette.mode === ThemeMode.DARK ? light : dark
-        }),
+        ...(color === 'secondary' && { backgroundColor: dark, ...theme.applyStyles('dark', { backgroundColor: light }) }),
         '&:hover': {
-          backgroundColor: theme.palette.mode === ThemeMode.DARK ? lighter : dark,
-          ...(color === 'secondary' && {
-            backgroundColor: theme.palette.mode === ThemeMode.DARK ? lighter : darker
-          })
+          backgroundColor: dark,
+          ...theme.applyStyles('dark', { backgroundColor: lighter }),
+          ...(color === 'secondary' && { backgroundColor: darker, ...theme.applyStyles('dark', { backgroundColor: lighter }) })
         },
         ...commonShadow
       };
     case 'shadow':
       return {
         color: contrastText,
-        backgroundColor: theme.palette.mode === ThemeMode.DARK ? light : dark,
+        backgroundColor: dark,
+        ...theme.applyStyles('dark', { backgroundColor: light }),
         boxShadow: shadows,
-        '&:hover': {
-          boxShadow: 'none',
-          backgroundColor: theme.palette.mode === ThemeMode.DARK ? lighter : darker,
-          ...(color === 'secondary' && {
-            backgroundColor: theme.palette.mode === ThemeMode.DARK ? lighter : darker
-          })
-        },
+        '&:hover': { boxShadow: 'none', backgroundColor: darker, ...theme.applyStyles('dark', { backgroundColor: lighter }) },
         ...commonShadow
       };
     case 'outlined':
@@ -61,21 +52,20 @@ function getColorStyle({ variant, color, theme }) {
       };
     case 'dashed':
       return {
-        color: theme.palette.mode === ThemeMode.DARK ? darker : main,
-        borderColor: theme.palette.mode === ThemeMode.DARK ? darker : main,
+        color: main,
+        borderColor: main,
+        ...theme.applyStyles('dark', { color: darker, borderColor: darker }),
         backgroundColor: lighter,
-        '&:hover': {
-          color: theme.palette.mode === ThemeMode.DARK ? contrastText : dark,
-          borderColor: dark
-        },
+        '&:hover': { color: dark, ...theme.applyStyles('dark', { color: contrastText }), borderColor: dark },
         ...commonShadow
       };
     case 'text':
     default:
       return {
         '&:hover': {
-          color: theme.palette.mode === ThemeMode.DARK ? darker : dark,
-          backgroundColor: theme.palette.mode === ThemeMode.DARK ? lighter + 30 : lighter
+          color: dark,
+          backgroundColor: lighter,
+          ...theme.applyStyles('dark', { color: darker, backgroundColor: lighter + 30 })
         },
         ...commonShadow
       };
@@ -207,6 +197,16 @@ export default function Button(theme) {
           '& svg': {
             width: 20,
             height: 20
+          }
+        },
+        loading: {
+          pointerEvents: 'none !important',
+          '& svg': {
+            width: 'inherit',
+            height: 'inherit'
+          },
+          '&.MuiButton-loadingPositionCenter': {
+            color: 'transparent !important'
           }
         }
       }

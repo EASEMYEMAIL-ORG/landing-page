@@ -2,68 +2,71 @@ import { useRef, useState } from 'react';
 
 // material-ui
 import { alpha, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import CardMedia from '@mui/material/CardMedia';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // project-imports
 import FadeInWhenVisible from './Animation';
-import { ThemeDirection } from 'config';
+import { ThemeDirection, ThemeMode } from 'config';
 
 // third-party
 import Slider from 'react-slick';
 
 // assets
-import featureChat from 'assets/images/landing/chat.png';
-import featureEcommerce from 'assets/images/landing/e-commerce.png';
-import featureMail from 'assets/images/landing/mail.png';
-import featureSocial from 'assets/images/landing/social.png';
+import featureChatLight from 'assets/images/landing/chatLight.png';
+import featureChatDark from 'assets/images/landing/chatDark.png';
+import featureEcommerceLight from 'assets/images/landing/ecommerceLight.png';
+import featureEcommerceDark from 'assets/images/landing/ecommerceDark.png';
+import featureInvoiceLight from 'assets/images/landing/invoiceLight.png';
+import featureInvoiceDark from 'assets/images/landing/invoiceDark.png';
+import featureUserLight from 'assets/images/landing/userLight.png';
+import featureUserDark from 'assets/images/landing/userDark.png';
 
-const Technologies = [
-  {
-    image: featureChat,
-    title: 'Chat',
-    href: 'chat',
-    description: 'Power your web apps with the conceptual chat app of Able Pro Dashboard Template.'
-  },
-  {
-    image: featureEcommerce,
-    title: 'E-commerce',
-    href: 'ecommerce',
-    description: 'Collection, Filter, Product Detail, Add New Product, and Checkout pages makes your e-commerce app complete.'
-  },
-  {
-    image: featureMail,
-    title: 'Inbox',
-    href: 'mail',
-    description: 'Compose Message, List Message (email), Detailed Inbox pages well suited for any conversation based web apps.'
-  },
-  {
-    image: featureSocial,
-    title: 'User Management',
-    href: 'social',
-    description: 'Detailed pages for User Management like Profile settings, role, account settings, social profile and more to explore.'
-  }
-];
 // ==============================|| LANDING - AppsPage ||============================== //
 
 export default function AppsPage() {
   const theme = useTheme();
   const [slideIndex, setSlideIndex] = useState(0);
 
+  const Technologies = [
+    {
+      image: theme.palette.mode === ThemeMode.DARK ? featureChatDark : featureChatLight,
+      title: 'Chat',
+      href: 'chat',
+      description: 'Power your web apps with the conceptual chat app of Able Pro Dashboard Template.'
+    },
+    {
+      image: theme.palette.mode === ThemeMode.DARK ? featureEcommerceDark : featureEcommerceLight,
+      title: 'E-commerce',
+      href: 'ecommerce',
+      description: 'Collection, filter, product detail, add new product, and checkout pages makes your e-commerce app complete.'
+    },
+    {
+      image: theme.palette.mode === ThemeMode.DARK ? featureInvoiceDark : featureInvoiceLight,
+      title: 'Invoice',
+      href: 'invoice',
+      description:
+        'Create, manage, and customize invoices with detailed views for invoice lists, invoice details, and payment status tracking.'
+    },
+    {
+      image: theme.palette.mode === ThemeMode.DARK ? featureUserDark : featureUserLight,
+      title: 'User Management',
+      href: 'social',
+      description: 'Detailed pages for user management like profile settings, role, account settings, social profile and more to explore.'
+    }
+  ];
+
   function handleChange(value) {
     goToSlide(value);
     setSlideIndex(value);
   }
-
-  const [state, setState] = useState(0);
   const sliderRef = useRef(null);
 
   const goToSlide = (index) => {
-    setState(index);
     if (sliderRef.current) {
       sliderRef.current.slickGoTo(index);
     }
@@ -86,17 +89,17 @@ export default function AppsPage() {
   return (
     <Box sx={{ bgcolor: theme.palette.primary.main, overflow: 'hidden', pt: { md: 10, xs: 5 } }}>
       <Container>
-        <Grid container spacing={3} alignItems="center" justifyContent="center">
-          <Grid item xs={12}>
-            <Grid container spacing={2} justifyContent="center" sx={{ textAlign: 'center', marginBottom: 3 }}>
-              <Grid item xs={12}>
+        <Grid container spacing={3} sx={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Grid size={12}>
+            <Grid container spacing={2} sx={{ justifyContent: 'center', textAlign: 'center', marginBottom: 3 }}>
+              <Grid size={12}>
                 <Typography variant="h2" color="white">
                   Working Conceptual Apps
                 </Typography>
               </Grid>
-              <Grid item xs={12} md={7}>
+              <Grid size={{ xs: 12, md: 7 }}>
                 <Typography color="white">
-                  Each App is carefully crafted to achieve the best feature rich working concept for your project
+                  Each App is carefully crafted to achieve the best feature rich working concept for your project.
                 </Typography>
               </Grid>
             </Grid>
@@ -104,14 +107,14 @@ export default function AppsPage() {
         </Grid>
       </Container>
       <Container>
-        <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ pt: { md: 10, xs: 2.5 } }}>
-          <Grid item xs={12}>
-            <Grid container spacing={3} alignItems="start">
-              <Grid item xs={12} md={6}>
-                <Box pb={{ xs: 0, md: 10 }}>
-                  <Grid container spacing={1.5} alignItems="center">
+        <Grid container spacing={3} sx={{ alignItems: 'center', justifyContent: 'center', pt: { md: 10, xs: 2.5 } }}>
+          <Grid size={12}>
+            <Grid container spacing={3} sx={{ alignItems: 'start' }}>
+              <Grid size={{ xs: 12, md: 6 }}>
+                <Box sx={{ pb: { xs: 0, md: 10 } }}>
+                  <Grid container spacing={1.5} sx={{ alignItems: 'center' }}>
                     {Technologies.map((tech, index) => (
-                      <Grid item xs={12} key={index}>
+                      <Grid key={index} size={12}>
                         <FadeInWhenVisible>
                           <Button
                             onClick={() => {
@@ -124,19 +127,18 @@ export default function AppsPage() {
                               borderRadius: 1.5,
                               ...(slideIndex === index && {
                                 background: alpha(theme.palette.secondary.lighter, 0.13),
-                                boxShadow: theme.customShadows.z1,
-                                '&:hover': { background: alpha(theme.palette.secondary.lighter, 0.13), boxShadow: theme.customShadows.z1 }
+                                '&:hover': { background: alpha(theme.palette.secondary.lighter, 0.13) }
                               })
                             }}
                             variant="light"
                           >
-                            <Grid container textAlign="start" spacing={2}>
-                              <Grid item xs={12}>
+                            <Grid container spacing={2} sx={{ textAlign: 'start' }}>
+                              <Grid size={12}>
                                 <Typography variant="h4" color="white">
                                   {tech.title}
                                 </Typography>
                               </Grid>
-                              <Grid item xs={12}>
+                              <Grid size={12}>
                                 <Typography color="white">{tech.description}</Typography>
                               </Grid>
                             </Grid>
@@ -147,7 +149,7 @@ export default function AppsPage() {
                   </Grid>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Box
                   sx={{
                     transform: 'scale(1.56)',
@@ -162,8 +164,8 @@ export default function AppsPage() {
                 >
                   <Slider ref={sliderRef} {...settings}>
                     {Technologies.map((tech, index) => (
-                      <Box key={index + state}>
-                        <CardMedia component="img" image={tech.image} sx={{ width: '100%', minHeight: '100%' }} />
+                      <Box key={index}>
+                        {slideIndex === index && <CardMedia component="img" image={tech.image} sx={{ width: '100%', minHeight: '100%' }} />}
                       </Box>
                     ))}
                   </Slider>

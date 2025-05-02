@@ -1,5 +1,3 @@
-// material-ui
-import { useTheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -7,9 +5,8 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 // project-imports
-import MainCard from 'components/MainCard';
-
 import { ThemeMode } from 'config';
+import MainCard from 'components/MainCard';
 import useConfig from 'hooks/useConfig';
 
 // assets
@@ -18,8 +15,6 @@ import { Moon, Setting2, Sun1 } from 'iconsax-react';
 // ==============================|| CUSTOMIZATION - MODE ||============================== //
 
 export default function ThemeModeLayout() {
-  const theme = useTheme();
-
   const { mode, onChangeMode } = useConfig();
 
   const handleModeChange = (event) => {
@@ -28,23 +23,18 @@ export default function ThemeModeLayout() {
 
   return (
     <RadioGroup row aria-label="payment-card" name="payment-card" value={mode} onChange={handleModeChange}>
-      <Stack direction="row" alignItems="center" spacing={2.5} sx={{ width: '100%' }}>
+      <Stack direction="row" sx={{ gap: 2.5, alignItems: 'center', width: 1 }}>
         <FormControlLabel
           control={<Radio value={ThemeMode.LIGHT} sx={{ display: 'none' }} />}
-          sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
+          sx={{ width: 1, m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
               <MainCard
                 content={false}
-                sx={{
-                  width: '100%',
-                  borderWidth: 2,
-                  p: 1,
-                  ...(mode === ThemeMode.LIGHT && { borderColor: theme.palette.primary.main })
-                }}
+                sx={(theme) => ({ width: 1, borderWidth: 2, p: 1, ...theme.applyStyles('light', { borderColor: 'primary.main' }) })}
               >
-                <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: 44 }}>
-                  <Sun1 variant="Bold" color={theme.palette.warning.main} />
+                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center', height: 44, color: 'warning.main' }}>
+                  <Sun1 variant="Bold" />
                 </Stack>
               </MainCard>
               <Typography variant="caption">Light</Typography>
@@ -53,19 +43,14 @@ export default function ThemeModeLayout() {
         />
         <FormControlLabel
           control={<Radio value={ThemeMode.DARK} sx={{ display: 'none' }} />}
-          sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
+          sx={{ width: 1, m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
               <MainCard
                 content={false}
-                sx={{
-                  width: '100%',
-                  borderWidth: 2,
-                  p: 1,
-                  ...(mode === ThemeMode.DARK && { borderColor: theme.palette.primary.main })
-                }}
+                sx={(theme) => ({ width: 1, borderWidth: 2, p: 1, ...theme.applyStyles('dark', { borderColor: 'primary.main' }) })}
               >
-                <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: 44 }}>
+                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center', height: 44 }}>
                   <Moon variant="Bold" />
                 </Stack>
               </MainCard>
@@ -77,12 +62,12 @@ export default function ThemeModeLayout() {
           control={<Radio value={ThemeMode.AUTO} sx={{ display: 'none' }} />}
           sx={{ width: '100%', height: 60, m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
               <MainCard
                 content={false}
-                sx={{ width: '100%', borderWidth: 2, p: 1, ...(mode === ThemeMode.AUTO && { borderColor: theme.palette.primary.main }) }}
+                sx={{ width: '100%', borderWidth: 2, p: 1, ...(mode === ThemeMode.AUTO && { borderColor: 'primary.main' }) }}
               >
-                <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: 44 }}>
+                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center', height: 44 }}>
                   <Setting2 variant="Bold" />
                 </Stack>
               </MainCard>

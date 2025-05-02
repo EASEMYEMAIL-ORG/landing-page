@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-// project-import
+// project-imports
 import PopupStyled from './PopupStyled';
 
 // ==============================|| MAP BOX - MODAL ||============================== //

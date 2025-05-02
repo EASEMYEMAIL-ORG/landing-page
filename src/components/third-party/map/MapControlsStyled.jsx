@@ -1,15 +1,12 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
 // ==============================|| MAP BOX - CONTROL STYLED ||============================== //
 
 export default function MapControlsStyled() {
-  const theme = useTheme();
-
   return (
     <GlobalStyles
-      styles={{
+      styles={(theme) => ({
         '.mapboxgl-ctrl.mapboxgl-ctrl-group': { borderRadius: '4px', boxShadow: theme.customShadows.z1 },
 
         '.mapboxgl-ctrl-fullscreen': { '.mapboxgl-ctrl-icon': { transform: ' scale(0.75)' } },
@@ -23,11 +20,11 @@ export default function MapControlsStyled() {
           border: 'none',
           lineHeight: '14px',
           borderRadius: '4px',
-          color: theme.palette.common.white,
+          color: theme.palette.text.primary,
           fontWeight: theme.typography.fontWeightBold,
-          backgroundImage: `linear-gradient(to right, #8a2387, #e94057, #f27121)`
+          background: theme.palette.background.default
         }
-      }}
+      })}
     />
   );
 }

@@ -1,14 +1,15 @@
-import { sum } from 'lodash';
 import { Link } from 'react-router-dom';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import Fab from '@mui/material/Fab';
 import Badge from '@mui/material/Badge';
+import Fab from '@mui/material/Fab';
+
+// third-party
+import { sum } from 'lodash-es';
 
 // project-imports
-import IconButton from 'components/@extended/IconButton';
 import { useGetCart } from 'api/cart';
+import IconButton from 'components/@extended/IconButton';
 
 // assets
 import { ShoppingCart } from 'iconsax-react';
@@ -16,8 +17,6 @@ import { ShoppingCart } from 'iconsax-react';
 // ==============================|| CART ITEMS - FLOATING BUTTON ||============================== //
 
 export default function FloatingCart() {
-  const theme = useTheme();
-
   const { cart } = useGetCart();
 
   let totalQuantity = 0;
@@ -31,7 +30,7 @@ export default function FloatingCart() {
       to="/apps/e-commerce/checkout"
       size="large"
       variant="circular"
-      sx={{
+      sx={(theme) => ({
         borderRadius: 0,
         borderTopLeftRadius: '50%',
         borderBottomLeftRadius: '50%',
@@ -49,7 +48,7 @@ export default function FloatingCart() {
         '&:hover': {
           bgcolor: 'warning.lighter'
         }
-      }}
+      })}
     >
       <IconButton
         aria-label="settings toggler"

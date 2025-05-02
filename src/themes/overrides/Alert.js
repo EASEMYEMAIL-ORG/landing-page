@@ -8,13 +8,14 @@ import getColors from 'utils/getColors';
 
 function getColorStyle({ color, theme }) {
   const colors = getColors(theme, color);
-  const { lighter, light, main } = colors;
+  const { lighter, light, main, darker } = colors;
 
   return {
     borderColor: alpha(light, 0.5),
     backgroundColor: lighter,
     '& .MuiAlert-icon': {
-      color: main
+      color: main,
+      ...theme.applyStyles('dark', { color: darker })
     }
   };
 }
@@ -42,7 +43,7 @@ export default function Alert(theme) {
           marginTop: 3
         },
         filled: {
-          color: theme.palette.common.white
+          color: theme.palette.background.default
         },
         border: {
           padding: '10px 16px',

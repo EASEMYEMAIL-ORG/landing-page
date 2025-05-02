@@ -1,5 +1,4 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import CardMedia from '@mui/material/CardMedia';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
@@ -18,11 +17,10 @@ import NoCaption from 'assets/images/customization/no-caption.svg';
 // ==============================|| CUSTOMIZATION - MODE ||============================== //
 
 export default function MenuCaption() {
-  const theme = useTheme();
   const { menuCaption, onChangeMenuCaption } = useConfig();
 
-  const handleMenuCaptionChange = () => {
-    onChangeMenuCaption();
+  const handleMenuCaptionChange = (event) => {
+    onChangeMenuCaption(event.target.value);
   };
 
   return (
@@ -33,13 +31,13 @@ export default function MenuCaption() {
       value={menuCaption ? 'caption' : 'default'}
       onChange={handleMenuCaptionChange}
     >
-      <Stack direction="row" alignItems="center" spacing={2.5} sx={{ width: '100%' }}>
+      <Stack direction="row" sx={{ gap: 2.5, alignItems: 'center', width: 1 }}>
         <FormControlLabel
           control={<Radio value="caption" sx={{ display: 'none' }} />}
           sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
-              <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(menuCaption && { borderColor: theme.palette.primary.main }) }}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
+              <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(menuCaption && { borderColor: 'primary.main' }) }}>
                 <CardMedia component="img" src={Caption} alt="Caption" />
               </MainCard>
               <Typography variant="caption">Show Caption</Typography>
@@ -50,8 +48,8 @@ export default function MenuCaption() {
           control={<Radio value="default" sx={{ display: 'none' }} />}
           sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
-              <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(!menuCaption && { borderColor: theme.palette.primary.main }) }}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
+              <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(!menuCaption && { borderColor: 'primary.main' }) }}>
                 <CardMedia component="img" src={NoCaption} alt="NoCaption" />
               </MainCard>
               <Typography variant="caption">Hide Caption</Typography>

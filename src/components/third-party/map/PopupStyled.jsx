@@ -4,9 +4,6 @@ import { Popup } from 'react-map-gl';
 // material-ui
 import { styled } from '@mui/material/styles';
 
-// project-imports
-import { ThemeMode } from 'config';
-
 // ==============================|| MAP BOX - POPUP STYLED ||============================== //
 
 const PopupStyled = styled(Popup)(({ theme }) => {
@@ -18,14 +15,14 @@ const PopupStyled = styled(Popup)(({ theme }) => {
       padding: 12,
       boxShadow: theme.customShadows.z1,
       borderRadius: 4,
-      backgroundColor: theme.palette.mode === ThemeMode.DARK ? theme.palette.background.default : theme.palette.background.paper
+      backgroundColor: theme.palette.background.paper
     },
     '& .mapboxgl-popup-close-button': {
-      width: 24,
-      height: 24,
-      fontSize: 16,
+      width: 30,
+      height: 30,
+      fontSize: 20,
       opacity: 0.48,
-      color: theme.palette.common.white,
+      color: theme.palette.error.dark,
       right: isRTL && '0',
       left: isRTL && 'auto',
       '&:hover': { opacity: 1 },

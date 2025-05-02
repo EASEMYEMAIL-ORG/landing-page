@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 // material-ui
 import { useTheme } from '@mui/material/styles';
 
@@ -11,7 +12,7 @@ import { ThemeMode } from 'config';
 
 // ==============================|| CODE HIGHLIGHTER ||============================== //
 
-export default function SyntaxHighlight({ children, ...others }) {
+export default function SyntaxHighlight({ children, customStyle, ...others }) {
   const theme = useTheme();
 
   return (
@@ -19,6 +20,7 @@ export default function SyntaxHighlight({ children, ...others }) {
       language="javascript"
       showLineNumbers
       style={theme.palette.mode === ThemeMode.DARK ? a11yLight : a11yDark}
+      customStyle={customStyle}
       {...others}
     >
       {children}
@@ -26,4 +28,4 @@ export default function SyntaxHighlight({ children, ...others }) {
   );
 }
 
-SyntaxHighlight.propTypes = { children: PropTypes.string };
+SyntaxHighlight.propTypes = { children: PropTypes.string, customStyle: PropTypes.any };

@@ -1,7 +1,7 @@
 // third-party
 import { sub } from 'date-fns';
 import { Chance } from 'chance';
-import lodash from 'lodash';
+import { sampleSize } from 'lodash-es';
 
 const chance = new Chance();
 
@@ -72,7 +72,7 @@ export default function mockData(index) {
       product: (index) => `product_${index}`,
       avatar: (index) => `avatar_${index}`
     },
-    skill: lodash.sampleSize(skills, chance.integer({ min: 2, max: 6 })),
-    time: lodash.sampleSize(time)
+    skill: sampleSize(skills, chance.integer({ min: 2, max: 6 })),
+    time: sampleSize(time)
   };
 }

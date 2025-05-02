@@ -1,5 +1,5 @@
 // third-party
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 
 // project-imports
 import Accordion from './Accordion';
@@ -37,6 +37,7 @@ import PaginationItem from './PaginationItem';
 import Popover from './Popover';
 import Radio from './Radio';
 import Slider from './Slider';
+import Snackbar from './Snackbar';
 import Switch from './Switch';
 import Tab from './Tab';
 import TableBody from './TableBody';
@@ -65,7 +66,7 @@ export default function ComponentsOverrides(theme) {
     Backdrop(),
     Body(),
     Button(theme),
-    ButtonBase(),
+    ButtonBase(theme),
     ButtonGroup(),
     CardContent(),
     Checkbox(theme),
@@ -90,6 +91,7 @@ export default function ComponentsOverrides(theme) {
     Popover(theme),
     Radio(theme),
     Slider(theme),
+    Snackbar(theme),
     Switch(theme),
     Tab(theme),
     TableBody(theme),

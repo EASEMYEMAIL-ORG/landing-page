@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 
-// third party
-import { useInView } from 'react-intersection-observer';
+// third-party
 import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 // =============================|| LANDING - FADE IN ANIMATION ||============================= //
 

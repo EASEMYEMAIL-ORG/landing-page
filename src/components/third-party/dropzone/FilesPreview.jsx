@@ -1,17 +1,14 @@
 import PropTypes from 'prop-types';
 // material-ui
+import CardMedia from '@mui/material/CardMedia';
 import List from '@mui/material/List';
-import ListItemText from '@mui/material/ListItemText';
 import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 
 // project-imports
-import IconButton from 'components/@extended/IconButton';
 import { DropzopType } from 'config';
-
-// utils
+import IconButton from 'components/@extended/IconButton';
 import getDropzoneData from 'utils/getDropzoneData';
-
-// type
 
 // assets
 import { CloseCircle, Document } from 'iconsax-react';
@@ -51,7 +48,7 @@ export default function FilesPreview({ showList = false, files, onRemove, type }
                 overflow: 'hidden'
               }}
             >
-              {type?.includes('image') && <img alt="preview" src={preview} style={{ width: '100%' }} />}
+              {type?.includes('image') && <CardMedia component="img" alt="preview" src={preview} />}
               {!type?.includes('image') && <Document variant="Bold" style={{ width: '100%', fontSize: '1.5rem' }} />}
 
               {onRemove && (
@@ -95,8 +92,7 @@ export default function FilesPreview({ showList = false, files, onRemove, type }
             <ListItemText
               primary={typeof file === 'string' ? file : name}
               secondary={typeof file === 'string' ? '' : size}
-              primaryTypographyProps={{ variant: 'subtitle2' }}
-              secondaryTypographyProps={{ variant: 'caption' }}
+              slotProps={{ primary: { variant: 'subtitle2' }, secondary: { variant: 'caption' } }}
             />
 
             {onRemove && (

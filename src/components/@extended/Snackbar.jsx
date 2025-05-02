@@ -4,7 +4,6 @@ import Button from '@mui/material/Button';
 import Fade from '@mui/material/Fade';
 import Grow from '@mui/material/Grow';
 import Slide from '@mui/material/Slide';
-import Stack from '@mui/material/Stack';
 import MuiSnackbar from '@mui/material/Snackbar';
 
 // project-imports
@@ -70,17 +69,39 @@ export default function Snackbar() {
           TransitionComponent={animation[snackbar.transition]}
           action={
             <>
-              <Button color="secondary" size="small" onClick={handleClose}>
+              <Button
+                variant="contained"
+                size="small"
+                onClick={handleClose}
+                color="secondary"
+                sx={(theme) => ({
+                  bgcolor: 'secondary.main',
+                  color: 'background.paper',
+                  fontSize: 12,
+                  ...theme.applyStyles('dark', {
+                    '&:hover': { bgcolor: 'secondary.main', color: 'error.main' }
+                  })
+                })}
+              >
                 UNDO
               </Button>
-              <IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-                <Add style={{ transform: 'rotate(45deg)' }} />
+              <IconButton
+                variant="contained"
+                size="small"
+                aria-label="close"
+                color="secondary"
+                onClick={handleClose}
+                sx={{ '& svg': { width: 24, height: 24 } }}
+              >
+                <Add size={24} style={{ transform: 'rotate(45deg)' }} />
               </IconButton>
             </>
           }
+          sx={(theme) => ({
+            '& .MuiPaper-root': { bgcolor: 'secondary.main', '& .MuiSnackbarContent-message': { ...theme.typography.h6 } }
+          })}
         />
       )}
-
       {/* alert snackbar */}
       {snackbar.variant === 'alert' && (
         <MuiSnackbar
@@ -94,25 +115,39 @@ export default function Snackbar() {
             variant={snackbar.alert.variant}
             color={snackbar.alert.color}
             action={
-              <Stack direction="row" alignItems="center">
+              <>
                 {snackbar.actionButton !== false && (
-                  <Button color={snackbar.alert.color} size="small" onClick={handleClose}>
-                    UNDO
-                  </Button>
+                  <>
+                    <Button color={snackbar.alert.color} size="small" onClick={handleClose} sx={{ mt: 0.5 }}>
+                      UNDO
+                    </Button>
+                    <IconButton
+                      sx={{ mt: 0.25 }}
+                      size="small"
+                      aria-label="close"
+                      variant="contained"
+                      color={snackbar.alert.color}
+                      onClick={handleClose}
+                    >
+                      <Add style={{ transform: 'rotate(45deg)' }} />
+                    </IconButton>
+                  </>
                 )}
-                {snackbar.close && (
-                  <IconButton size="small" aria-label="close" variant="contained" color={snackbar.alert.color} onClick={handleClose}>
+                {snackbar.actionButton === false && snackbar.close && (
+                  <IconButton
+                    sx={{ mt: 0.25, '&:hover': { bgcolor: 'transparent' } }}
+                    size="small"
+                    aria-label="close"
+                    variant="contained"
+                    color={snackbar.alert.color}
+                    onClick={handleClose}
+                  >
                     <Add style={{ transform: 'rotate(45deg)' }} />
                   </IconButton>
                 )}
-              </Stack>
+              </>
             }
-            sx={{
-              ...snackbar.alert.sx,
-              ...(snackbar.alert.variant === 'outlined' && {
-                bgcolor: 'background.default'
-              })
-            }}
+            sx={{ ...snackbar.alert.sx, ...(snackbar.alert.variant === 'outlined' && { bgcolor: 'background.default' }) }}
           >
             {snackbar.message}
           </Alert>

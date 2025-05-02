@@ -11,6 +11,7 @@ export default function TableBody(theme) {
     MuiTableBody: {
       styleOverrides: {
         root: {
+          backgroundColor: theme.palette.background.paper,
           '&.striped .MuiTableRow-root': {
             '&:nth-of-type(even)': {
               backgroundColor: theme.palette.secondary.lighter

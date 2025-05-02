@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 // material-ui
 import FormControl from '@mui/material/FormControl';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import MenuItem from '@mui/material/MenuItem';
 import Pagination from '@mui/material/Pagination';
 import Select from '@mui/material/Select';
@@ -25,7 +25,7 @@ export default function TablePagination({ getPageCount, setPageIndex, setPageSiz
       });
   }
 
-  // eslint-disable-next-line
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => setPageSize(initialPageSize || 10), []);
 
   const handleClose = () => {
@@ -45,10 +45,10 @@ export default function TablePagination({ getPageCount, setPageIndex, setPageSiz
   };
 
   return (
-    <Grid spacing={1} container alignItems="center" justifyContent="space-between" sx={{ width: 'auto' }}>
-      <Grid item>
-        <Stack direction="row" spacing={1} alignItems="center">
-          <Stack direction="row" spacing={1} alignItems="center">
+    <Grid spacing={1} container sx={{ alignItems: 'center', justifyContent: 'space-between', width: 'auto' }}>
+      <Grid>
+        <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
+          <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
             <Typography variant="caption" color="secondary">
               Row per page
             </Typography>
@@ -86,7 +86,7 @@ export default function TablePagination({ getPageCount, setPageIndex, setPageSiz
           />
         </Stack>
       </Grid>
-      <Grid item sx={{ mt: { xs: 2, sm: 0 } }}>
+      <Grid sx={{ mt: { xs: 2, sm: 0 } }}>
         <Pagination
           sx={{ '& .MuiPaginationItem-root': { my: 0.5 } }}
           count={getPageCount()}

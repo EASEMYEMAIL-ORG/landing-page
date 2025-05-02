@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 
 // project-imports
 import getColors from 'utils/getColors';
-import { ThemeMode } from 'config';
 
 // ==============================|| RADIO - COLORS ||============================== //
 
@@ -17,7 +16,7 @@ function getColorStyle({ color, theme }) {
     },
     '&:hover': {
       backgroundColor: color === 'secondary' ? lighter : lighter + 50,
-      ...(theme.palette.mode === ThemeMode.DARK && {
+      ...theme.applyStyles('dark', {
         backgroundColor: color === 'secondary' ? lighter + 50 : lighter + 20
       })
     },

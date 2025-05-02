@@ -51,7 +51,7 @@ export default function RowEditable({ getValue: initialValue, row, column: { id,
   switch (id) {
     case 'email':
       userInfoSchema = yup.object().shape({
-        userInfo: yup.string().email('Enter valid email ').required('Email is a required field')
+        userInfo: yup.string().email('Enter valid email ').required('Email is required')
       });
       break;
     case 'age':
@@ -66,12 +66,17 @@ export default function RowEditable({ getValue: initialValue, row, column: { id,
       break;
     case 'visits':
       userInfoSchema = yup.object().shape({
-        userInfo: yup.number().typeError('Visits must be number').required('Required')
+        userInfo: yup.number().typeError('Visits must be number').required('Visits are required')
+      });
+      break;
+    case 'lastName':
+      userInfoSchema = yup.object().shape({
+        userInfo: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name is required')
       });
       break;
     default:
       userInfoSchema = yup.object().shape({
-        userInfo: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Name is Required')
+        userInfo: yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('First name is required')
       });
       break;
   }
@@ -150,7 +155,7 @@ export default function RowEditable({ getValue: initialValue, row, column: { id,
         <>
           {isEditable ? (
             <>
-              <Stack direction="row" alignItems="center" spacing={1} sx={{ pl: 1, minWidth: 120 }}>
+              <Stack direction="row" sx={{ gap: 1, alignItems: 'center', pl: 1, minWidth: 120 }}>
                 <Slider
                   value={value}
                   min={0}

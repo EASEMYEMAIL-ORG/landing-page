@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 // material-ui
 import Stack from '@mui/material/Stack';
 
-// project-import
+// project-imports
 import DebouncedInput from './DebouncedInput';
 
 // assets
@@ -18,7 +18,7 @@ function NumberInput({ columnFilterValue, getFacetedMinMaxValues, setFilterValue
   const max = Number(maxOpt);
 
   return (
-    <Stack direction="row" spacing={1} alignItems="center">
+    <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
       <DebouncedInput
         type="number"
         value={columnFilterValue?.[0] ?? ''}

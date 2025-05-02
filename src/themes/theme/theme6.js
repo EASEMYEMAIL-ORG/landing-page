@@ -1,4 +1,4 @@
-//
+// project-imports
 import { ThemeMode } from 'config';
 
 // ==============================|| PRESET THEME - THEME6 ||============================== //

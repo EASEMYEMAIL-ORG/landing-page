@@ -1,7 +1,7 @@
 // material-ui
 import Avatar from '@mui/material/Avatar';
 import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -22,8 +22,8 @@ export default function UserCard() {
     >
       <CardContent sx={{ p: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <Stack flexDirection="row" alignItems="center">
+          <Grid size={12}>
+            <Stack direction="row" sx={{ alignItems: 'center' }}>
               <Avatar>
                 <ProfileAdd style={{ visibility: 'inherit' }} />
               </Avatar>
@@ -33,21 +33,21 @@ export default function UserCard() {
               </Stack>
             </Stack>
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <Skeleton animation={false} height={20} width={45} />
             <Skeleton animation={false} height={20} />
-            <Stack direction="row" alignItems="center" spacing={1}>
+            <Stack direction="row" sx={{ gap: 1, alignItems: 'center' }}>
               <Skeleton animation={false} height={20} width={90} />
               <Skeleton animation={false} height={20} width={38} />
             </Stack>
           </Grid>
-          <Grid item xs={12}>
-            <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Grid size={12}>
+            <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
               <Grid container spacing={1}>
-                <Grid item>
+                <Grid>
                   <Skeleton animation={false} height={20} width={40} />
                 </Grid>
-                <Grid item>
+                <Grid>
                   <Skeleton animation={false} height={17} width={20} />
                 </Grid>
               </Grid>

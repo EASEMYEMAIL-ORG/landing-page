@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 // material-ui
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Chip from '@mui/material/Chip';
+import Box from '@mui/material/Box';
 
 // project-imports
 import MainCard from 'components/MainCard';
@@ -17,18 +17,18 @@ import { ArrowRight, ArrowUp } from 'iconsax-react';
 export default function AnalyticEcommerce({ color = 'primary', title, count, percentage, isLoss, extra }) {
   return (
     <MainCard contentSX={{ p: 2.25 }}>
-      <Stack spacing={0.5}>
-        <Typography variant="h6" color="text.secondary">
+      <Stack sx={{ gap: 0.5 }}>
+        <Typography variant="h6" sx={{ color: 'text.secondary' }}>
           {title}
         </Typography>
-        <Grid container alignItems="center">
-          <Grid item>
+        <Grid container sx={{ alignItems: 'center' }}>
+          <Grid>
             <Typography variant="h4" color="inherit">
               {count}
             </Typography>
           </Grid>
           {percentage && (
-            <Grid item>
+            <Grid>
               <Chip
                 variant="combined"
                 color={color}
@@ -47,7 +47,7 @@ export default function AnalyticEcommerce({ color = 'primary', title, count, per
         </Grid>
       </Stack>
       <Box sx={{ pt: 2.25 }}>
-        <Typography variant="caption" color="text.secondary">
+        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
           You made an extra{' '}
           <Typography variant="caption" sx={{ color: `${color || 'primary'}.main` }}>
             {extra}

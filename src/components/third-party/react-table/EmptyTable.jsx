@@ -4,18 +4,15 @@ import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-// project-imports
-import { ThemeMode } from 'config';
-
 // ==============================|| EMPTY TABLE - NO DATA ||============================== //
 
 const StyledGridOverlay = styled(Stack)(({ theme }) => ({
   height: '400px',
-  '& .ant-empty-img-1': { fill: theme.palette.mode === ThemeMode.DARK ? theme.palette.secondary[200] : theme.palette.secondary[400] },
+  '& .ant-empty-img-1': { fill: theme.palette.secondary[400] },
   '& .ant-empty-img-2': { fill: theme.palette.secondary.light },
-  '& .ant-empty-img-3': { fill: theme.palette.mode === ThemeMode.DARK ? theme.palette.secondary.A200 : theme.palette.secondary[200] },
-  '& .ant-empty-img-4': { fill: theme.palette.mode === ThemeMode.DARK ? theme.palette.secondary.A300 : theme.palette.secondary.A100 },
-  '& .ant-empty-img-5': { fillOpacity: 0.95, fill: theme.palette.secondary.light }
+  '& .ant-empty-img-3': { fill: theme.palette.secondary[200] },
+  '& .ant-empty-img-4': { fill: theme.palette.background.paper },
+  '& .ant-empty-img-5': { fill: theme.palette.secondary.light }
 }));
 
 export default function EmptyTable({ msg }) {

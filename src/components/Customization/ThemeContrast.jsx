@@ -1,5 +1,4 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -16,11 +15,10 @@ import { Mask } from 'iconsax-react';
 // ==============================|| CUSTOMIZATION - MODE ||============================== //
 
 export default function ThemeContrast() {
-  const theme = useTheme();
   const { themeContrast, onChangeContrast } = useConfig();
 
-  const handleContrastChange = () => {
-    onChangeContrast();
+  const handleContrastChange = (event) => {
+    onChangeContrast(event.target.value);
   };
 
   return (
@@ -31,17 +29,14 @@ export default function ThemeContrast() {
       value={themeContrast ? 'contrast' : 'default'}
       onChange={handleContrastChange}
     >
-      <Stack direction="row" alignItems="center" spacing={2.5} sx={{ width: '100%' }}>
+      <Stack direction="row" sx={{ gap: 2.5, alignItems: 'center', width: 1 }}>
         <FormControlLabel
           control={<Radio value="contrast" sx={{ display: 'none' }} />}
-          sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
+          sx={{ width: 1, m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
-              <MainCard
-                content={false}
-                sx={{ width: '100%', borderWidth: 2, p: 1, ...(themeContrast && { borderColor: theme.palette.primary.main }) }}
-              >
-                <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: 44 }}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
+              <MainCard content={false} sx={{ width: '100%', borderWidth: 2, p: 1, ...(themeContrast && { borderColor: 'primary.main' }) }}>
+                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center', height: 44 }}>
                   <Mask variant="Bold" />
                 </Stack>
               </MainCard>
@@ -53,12 +48,12 @@ export default function ThemeContrast() {
           control={<Radio value="default" sx={{ display: 'none' }} />}
           sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
               <MainCard
                 content={false}
-                sx={{ width: '100%', borderWidth: 2, p: 1, ...(!themeContrast && { borderColor: theme.palette.primary.main }) }}
+                sx={{ width: '100%', borderWidth: 2, p: 1, ...(!themeContrast && { borderColor: 'primary.main' }) }}
               >
-                <Stack direction="row" alignItems="center" justifyContent="center" sx={{ height: 44 }}>
+                <Stack direction="row" sx={{ alignItems: 'center', justifyContent: 'center', height: 44 }}>
                   <Mask />
                 </Stack>
               </MainCard>

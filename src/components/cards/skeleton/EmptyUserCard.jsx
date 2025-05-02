@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 // material-ui
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 // project-imports
 import UserCard from './UserCard';
@@ -13,7 +13,7 @@ import UserCard from './UserCard';
 export default function EmptyUserCard({ title }) {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12}>
+      <Grid size={12}>
         <Box
           sx={{
             p: { xs: 2.5, sm: 6 },
@@ -24,8 +24,8 @@ export default function EmptyUserCard({ title }) {
             bgcolor: 'transparent'
           }}
         >
-          <Grid container direction="column" justifyContent="center" alignItems="center">
-            <Grid item>
+          <Grid container direction="column" sx={{ justifyContent: 'center', alignItems: 'center' }}>
+            <Grid>
               <Box sx={{ ml: -9, mb: { xs: -8, sm: -5 } }}>
                 <Box sx={{ position: 'relative' }}>
                   <UserCard />
@@ -35,8 +35,8 @@ export default function EmptyUserCard({ title }) {
                 </Box>
               </Box>
             </Grid>
-            <Grid item>
-              <Stack spacing={1}>
+            <Grid>
+              <Stack sx={{ gap: 1 }}>
                 <Typography align="center" variant="h4">
                   {title}
                 </Typography>

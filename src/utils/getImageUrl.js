@@ -1,7 +1,6 @@
 export let ImagePath;
 
 (function (ImagePath) {
-  ImagePath['LANDING'] = 'landing';
   ImagePath['USERS'] = 'users';
   ImagePath['ECOMMERCE'] = 'e-commerce';
   ImagePath['PROFILE'] = 'profile';

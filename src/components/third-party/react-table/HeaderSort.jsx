@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 // assets
 import { ArrowDown2, ArrowUp2 } from 'iconsax-react';
@@ -14,24 +13,21 @@ var SortType;
   SortType['DESC'] = 'desc';
 })(SortType || (SortType = {}));
 
-const SortToggler = ({ type }) => {
-  const theme = useTheme();
+function SortToggler({ type }) {
   return (
-    <Stack sx={{ color: 'secondary.light' }}>
-      <ArrowUp2
-        size="15"
-        variant="Bold"
-        style={{ fontSize: '0.625rem', color: type === SortType.ASC ? theme.palette.text.secondary : 'inherit' }}
-      />
-
-      <ArrowDown2
-        size="15"
-        variant="Bold"
-        style={{ fontSize: '0.625rem', marginTop: -8, color: type === SortType.DESC ? theme.palette.text.secondary : 'inherit' }}
-      />
+    <Stack
+      sx={{
+        fontSize: '0.625rem',
+        color: 'secondary.light',
+        ...(type === SortType.ASC && { '& .caret-up': { color: 'secondary.main' } }),
+        ...(type === SortType.DESC && { '& .caret-down': { color: 'secondary.main' } })
+      }}
+    >
+      <ArrowUp2 className="caret-up" size="15" variant="Bold" style={{ fontSize: '0.625rem' }} />
+      <ArrowDown2 className="caret-down" size="15" variant="Bold" style={{ fontSize: '0.625rem', marginTop: -8 }} />
     </Stack>
   );
-};
+}
 
 // ==============================|| SORT HEADER ||============================== //
 

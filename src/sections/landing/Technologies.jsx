@@ -1,37 +1,38 @@
 import { Link as RouterLink } from 'react-router-dom';
 
 // material-ui
-import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Container from '@mui/material/Container';
 import CardMedia from '@mui/material/CardMedia';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
-// third party
+// third-party
 import { motion } from 'framer-motion';
 
 // project-imports
 import FadeInWhenVisible from './Animation';
-import MainCard from 'components/MainCard';
 import IconButton from 'components/@extended/IconButton';
-import { useIspValue } from 'hooks/useIspValue';
+import MainCard from 'components/MainCard';
 import { techData } from 'data/tech-data';
+import { useIspValue } from 'hooks/useIspValue';
 
 // assets
-import { DocumentDownload, ExportSquare } from 'iconsax-react';
+import { ExportSquare } from 'iconsax-react';
+import GithubIcon from 'assets/third-party/github';
 
-// ==============================|| LANDING - TechnologiesPage ||============================== //
+// ==============================|| LANDING - TECHNOLOGIES PAGE ||============================== //
 
 export default function TechnologiesPage() {
   const ispValueAvailable = useIspValue();
 
   return (
     <Container>
-      <Grid container spacing={3} alignItems="center" justifyContent="center" sx={{ mt: { md: 15, xs: 2.5 }, mb: { md: 10, xs: 2.5 } }}>
-        <Grid item xs={12}>
-          <Grid container spacing={2} sx={{ textAlign: 'center', marginBottom: 3 }}>
-            <Grid item xs={12}>
+      <Grid container spacing={3} sx={{ alignItems: 'center', justifyContent: 'center', mt: { md: 15, xs: 2.5 }, mb: { md: 10, xs: 2.5 } }}>
+        <Grid size={12}>
+          <Grid container spacing={2} sx={{ textAlign: 'center', marginBottom: 3, paddingTop: 3 }}>
+            <Grid size={12}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
@@ -45,7 +46,7 @@ export default function TechnologiesPage() {
                 <Typography variant="h2">Available Technologies</Typography>
               </motion.div>
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <motion.div
                 initial={{ opacity: 0, translateY: 550 }}
                 animate={{ opacity: 1, translateY: 0 }}
@@ -61,25 +62,25 @@ export default function TechnologiesPage() {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Grid container spacing={3} alignItems="center" justifyContent="center">
+        <Grid size={12}>
+          <Grid container spacing={3} sx={{ alignItems: 'center', justifyContent: 'center' }}>
             {techData.map((tech, index) => (
-              <Grid item xs={12} md={6} lg={4} key={index}>
+              <Grid key={index} size={{ xs: 12, md: 6, lg: 4 }}>
                 <FadeInWhenVisible>
                   <MainCard>
                     <Grid container spacing={2}>
-                      <Grid item xs={12}>
+                      <Grid size={12}>
                         <CardMedia component="img" image={tech.image} sx={{ width: 'auto' }} />
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid size={12}>
                         <Typography variant="h4">{tech.label}</Typography>
                       </Grid>
-                      <Grid item xs={12}>
+                      <Grid size={12}>
                         <Typography>{tech.description}</Typography>
                       </Grid>
-                      <Grid item xs={12}>
-                        <Grid container spacing={2} justifyContent="flex-start">
-                          <Grid item>
+                      <Grid size={12}>
+                        <Grid container spacing={2} sx={{ justifyContent: 'flex-start' }}>
+                          <Grid>
                             <Button
                               variant="contained"
                               color="secondary"
@@ -90,30 +91,36 @@ export default function TechnologiesPage() {
                                 ? { to: ispValueAvailable ? `${tech.url}?isp=1` : tech.url }
                                 : { href: ispValueAvailable ? `${tech.url}?isp=1` : tech.url })}
                               target={tech.target}
-                              sx={{
+                              sx={(theme) => ({
                                 fontWeight: 500,
                                 bgcolor: 'secondary.light',
                                 color: 'secondary.darker',
-                                '&:hover': { color: 'secondary.lighter' }
-                              }}
+                                ...theme.applyStyles('light', { '&:hover': { color: 'secondary.lighter' } })
+                              })}
                             >
-                              Reference
+                              Preview
                             </Button>
                           </Grid>
                           {!(tech.free == null) && (
-                            <Grid item>
+                            <Grid>
                               <Link component={RouterLink} to={tech.url}>
                                 <IconButton
                                   size="large"
                                   shape="rounded"
                                   color="secondary"
-                                  sx={{
-                                    bgcolor: 'secondary.lighter',
+                                  variant="light"
+                                  sx={(theme) => ({
+                                    bgcolor: 'secondary.light',
                                     color: 'secondary.darker',
-                                    '&:hover': { color: 'secondary.lighter', bgcolor: 'secondary.darker' }
-                                  }}
+                                    '&:hover': {
+                                      color: 'secondary.lighter',
+                                      bgcolor: 'grey.800',
+                                      svg: { stroke: theme.palette.common.white },
+                                      ...theme.applyStyles('dark', { color: 'grey.500' })
+                                    }
+                                  })}
                                 >
-                                  <DocumentDownload />
+                                  <GithubIcon />
                                 </IconButton>
                               </Link>
                             </Grid>

@@ -60,19 +60,21 @@ export default function PaginationItem(theme) {
           '&:focus-visible': {
             outline: `2px solid ${theme.palette.secondary.dark}`,
             outlineOffset: 2
-          }
+          },
+          marginTop: '4px',
+          marginBottom: '4px'
         },
         text: {
           '&.Mui-selected': {
             backgroundColor: 'transparent',
             fontSize: '1rem',
             fontWeight: 500,
-            '&.MuiPaginationItem-textPrimary': getColorStyle({ variant: 'text', color: 'primary', theme }),
-            '&.MuiPaginationItem-textSecondary': getColorStyle({ variant: 'text', color: 'secondary', theme }),
-            '&.MuiPaginationItem-textError': getColorStyle({ variant: 'text', color: 'error', theme }),
-            '&.MuiPaginationItem-textSuccess': getColorStyle({ variant: 'text', color: 'success', theme }),
-            '&.MuiPaginationItem-textInfo': getColorStyle({ variant: 'text', color: 'info', theme }),
-            '&.MuiPaginationItem-textWarning': getColorStyle({ variant: 'text', color: 'warning', theme })
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorPrimary': getColorStyle({ variant: 'text', color: 'primary', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorSecondary': getColorStyle({ variant: 'text', color: 'secondary', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorError': getColorStyle({ variant: 'text', color: 'error', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorSuccess': getColorStyle({ variant: 'text', color: 'success', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorInfo': getColorStyle({ variant: 'text', color: 'info', theme }),
+            '&.MuiPaginationItem-text.MuiPaginationItem-colorWarning': getColorStyle({ variant: 'text', color: 'warning', theme })
           }
         },
         contained: {
@@ -104,12 +106,16 @@ export default function PaginationItem(theme) {
           borderColor: theme.palette.divider,
           '&.Mui-selected': {
             backgroundColor: 'transparent',
-            '&.MuiPaginationItem-outlinedPrimary': getColorStyle({ variant: 'outlined', color: 'primary', theme }),
-            '&.MuiPaginationItem-outlinedSecondary': getColorStyle({ variant: 'outlined', color: 'secondary', theme }),
-            '&.MuiPaginationItem-outlinedError': getColorStyle({ variant: 'outlined', color: 'error', theme }),
-            '&.MuiPaginationItem-outlinedSuccess': getColorStyle({ variant: 'outlined', color: 'success', theme }),
-            '&.MuiPaginationItem-outlinedInfo': getColorStyle({ variant: 'outlined', color: 'info', theme }),
-            '&.MuiPaginationItem-outlinedWarning': getColorStyle({ variant: 'outlined', color: 'warning', theme })
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorPrimary': getColorStyle({ variant: 'outlined', color: 'primary', theme }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSecondary': getColorStyle({
+              variant: 'outlined',
+              color: 'secondary',
+              theme
+            }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorError': getColorStyle({ variant: 'outlined', color: 'error', theme }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorSuccess': getColorStyle({ variant: 'outlined', color: 'success', theme }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorInfo': getColorStyle({ variant: 'outlined', color: 'info', theme }),
+            '&.MuiPaginationItem-outlined.MuiPaginationItem-colorWarning': getColorStyle({ variant: 'outlined', color: 'warning', theme })
           }
         }
       }

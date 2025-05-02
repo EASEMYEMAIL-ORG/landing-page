@@ -31,27 +31,28 @@ export default function DebouncedInput({
     }, debounce);
 
     return () => clearTimeout(timeout);
-    // eslint-disable-next-line
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
     <OutlinedInput
-      {...props}
       value={value}
       onChange={handleInputChange}
       sx={{ minWidth: 100 }}
       {...(startAdornment && { startAdornment })}
       {...(size && { size })}
+      {...props}
     />
   );
 }
 
 DebouncedInput.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onFilterChange: PropTypes.func,
   debounce: PropTypes.number,
+  size: PropTypes.any,
   startAdornment: PropTypes.any,
   SearchNormal: PropTypes.any,
-  size: PropTypes.string,
+  size: PropTypes.any,
   props: PropTypes.any
 };

@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CardMedia from '@mui/material/CardMedia';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -11,11 +10,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 // project-imports
-import MainCard from 'components/MainCard';
-
-import { MenuOrientation, ThemeDirection } from 'config';
-import useConfig from 'hooks/useConfig';
 import { handlerDrawerOpen, useGetMenuMaster } from 'api/menu';
+import { MenuOrientation, ThemeDirection } from 'config';
+import MainCard from 'components/MainCard';
+import useConfig from 'hooks/useConfig';
 
 // assets
 import defaultLayout from 'assets/images/customization/ltr.svg';
@@ -25,55 +23,62 @@ import miniMenu from 'assets/images/customization/mini-menu.svg';
 // ==============================|| CUSTOMIZATION - LAYOUT ||============================== //
 
 export default function ThemeLayout() {
-  const theme = useTheme();
-  const downLG = useMediaQuery(theme.breakpoints.down('lg'));
+  const downLG = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
-  const { miniDrawer, themeDirection, onChangeDirection, onChangeMiniDrawer, menuOrientation } = useConfig();
+  const { miniDrawer, themeDirection, onChangeMiniDrawer, onChangeThemeLayout, menuOrientation } = useConfig();
   const { menuMaster } = useGetMenuMaster();
-  const drawerOpen = menuMaster.isDashboardDrawerOpened;
+  const drawerOpen = menuMaster?.isDashboardDrawerOpened;
 
   let initialTheme = 'default';
   if (miniDrawer === true) initialTheme = 'mini';
-  if (themeDirection === ThemeDirection.RTL) initialTheme = 'rtl';
+  if (themeDirection === ThemeDirection.RTL) initialTheme = ThemeDirection.RTL;
 
   const [value, setValue] = useState(initialTheme);
   const handleRadioChange = (event) => {
     const newValue = event.target.value;
     setValue(newValue);
-    if (newValue === 'default') {
-      if (themeDirection === ThemeDirection.RTL) {
-        onChangeDirection(ThemeDirection.LTR);
-      }
-      if (miniDrawer === true) {
-        onChangeMiniDrawer(false);
-      }
-      if (!drawerOpen) {
+    switch (newValue) {
+      case 'mini':
+        onChangeMiniDrawer(true);
+        if (drawerOpen) {
+          handlerDrawerOpen(false);
+        }
+        break;
+      case ThemeDirection.RTL:
+        onChangeThemeLayout(ThemeDirection.RTL, false);
+        if (!drawerOpen) {
+          handlerDrawerOpen(true);
+        }
+        break;
+      case 'default':
+        onChangeThemeLayout(ThemeDirection.LTR, false);
+        if (!drawerOpen) {
+          handlerDrawerOpen(true);
+        }
+        break;
+      default:
         handlerDrawerOpen(true);
-      }
-    }
-    if (newValue === 'mini') {
-      onChangeMiniDrawer(true);
-      if (drawerOpen) {
-        handlerDrawerOpen(false);
-      }
-    }
-    if (newValue === ThemeDirection.RTL) {
-      onChangeDirection(ThemeDirection.RTL);
+        break;
     }
   };
 
+  useEffect(() => {
+    if (menuOrientation === MenuOrientation.HORIZONTAL) {
+      setValue(themeDirection === ThemeDirection.RTL ? ThemeDirection.RTL : initialTheme);
+      onChangeMiniDrawer(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [menuOrientation, themeDirection]);
+
   return (
     <RadioGroup row aria-label="payment-card" name="payment-card" value={value} onChange={handleRadioChange}>
-      <Stack direction="row" alignItems="center" spacing={2.5} sx={{ width: '100%' }}>
+      <Stack direction="row" sx={{ gap: 2.5, alignItems: 'center', width: '100%' }}>
         <FormControlLabel
           control={<Radio value="default" sx={{ display: 'none' }} />}
           sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
-              <MainCard
-                content={false}
-                sx={{ borderWidth: 2, p: 1, ...(value === 'default' && { borderColor: theme.palette.primary.main }) }}
-              >
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
+              <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(value === 'default' && { borderColor: 'primary.main' }) }}>
                 <CardMedia component="img" src={defaultLayout} alt="defaultLayout" />
               </MainCard>
               <Typography variant="caption">Default</Typography>
@@ -85,11 +90,8 @@ export default function ThemeLayout() {
             control={<Radio value="mini" sx={{ display: 'none' }} />}
             sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
             label={
-              <Stack alignItems="center" spacing={0.5}>
-                <MainCard
-                  content={false}
-                  sx={{ borderWidth: 2, p: 1, ...(value === 'mini' && { borderColor: theme.palette.primary.main }) }}
-                >
+              <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
+                <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(value === 'mini' && { borderColor: 'primary.main' }) }}>
                   <CardMedia component="img" src={miniMenu} alt="miniMenu" />
                 </MainCard>
                 <Typography variant="caption">Mini Drawer</Typography>
@@ -101,11 +103,8 @@ export default function ThemeLayout() {
           control={<Radio value={ThemeDirection.RTL} sx={{ display: 'none' }} />}
           sx={{ width: '100%', m: 0, display: 'flex', '& .MuiFormControlLabel-label': { flex: 1 } }}
           label={
-            <Stack alignItems="center" spacing={0.5}>
-              <MainCard
-                content={false}
-                sx={{ borderWidth: 2, p: 1, ...(value === ThemeDirection.RTL && { borderColor: theme.palette.primary.main }) }}
-              >
+            <Stack sx={{ gap: 0.5, alignItems: 'center' }}>
+              <MainCard content={false} sx={{ borderWidth: 2, p: 1, ...(value === ThemeDirection.RTL && { borderColor: 'primary.main' }) }}>
                 <CardMedia component="img" src={rtlLayout} alt="rtlLayout" />
               </MainCard>
               <Typography variant="caption">RTL</Typography>

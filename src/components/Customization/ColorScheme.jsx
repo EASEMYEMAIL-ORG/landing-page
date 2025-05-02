@@ -1,5 +1,4 @@
 // material-ui
-import { useTheme } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -7,23 +6,23 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 // project-imports
-import MainCard from 'components/MainCard';
 import { ThemeMode } from 'config';
+import MainCard from 'components/MainCard';
 import useConfig from 'hooks/useConfig';
 
+// assets
 import { TickSquare } from 'iconsax-react';
 
 // ==============================|| CUSTOMIZATION - COLOR SCHEME ||============================== //
 
 export default function ColorScheme() {
-  const theme = useTheme();
   const { mode, presetColor, onChangePresetColor } = useConfig();
 
   const colorOptions = [
     {
       id: 'default',
-      primary: mode === ThemeMode.DARK ? '#4680FF' : '#4680FF',
-      darker: mode === ThemeMode.DARK ? '#2F63FF' : '#2F63FF'
+      primary: '#4680FF',
+      darker: '#2F63FF'
     },
     {
       id: 'theme1',
@@ -73,7 +72,7 @@ export default function ColorScheme() {
 
   return (
     <RadioGroup row aria-label="payment-card" name="payment-card" value={presetColor} onChange={handlePresetColorChange}>
-      <Stack direction="row" alignItems="center" sx={{ width: '100%' }} spacing={0.5}>
+      <Stack direction="row" sx={{ gap: 0.5, alignItems: 'center', width: 1 }}>
         {colorOptions.map((color, index) => (
           <FormControlLabel
             key={index}
@@ -93,16 +92,18 @@ export default function ColorScheme() {
               >
                 <Stack
                   direction="row"
-                  alignItems="center"
-                  justifyContent="center"
-                  sx={{ width: presetColor === color.id ? '100%' : 1, height: 44 }}
+                  sx={{ alignItems: 'center', justifyContent: 'center', width: presetColor === color.id ? '100%' : 1, height: 44 }}
                 >
                   {presetColor === color.id && (
-                    <Stack direction="column" alignItems="center">
-                      <TickSquare variant="Bulk" color={theme.palette.common.white} />
-                      <Typography color="white" variant="caption">
-                        {color.id}
-                      </Typography>
+                    <Stack
+                      sx={(theme) => ({
+                        alignItems: 'center',
+                        color: 'background.paper',
+                        ...theme.applyStyles('dark', { color: 'text.primary' })
+                      })}
+                    >
+                      <TickSquare variant="Bulk" />
+                      <Typography variant="caption">{color.id}</Typography>
                     </Stack>
                   )}
                 </Stack>

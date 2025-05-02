@@ -1,0 +1,1 @@
+import{j as e,M as r,q as a}from"./index-CXunsOLI.js";function s(){return e.jsx(r,{title:"Sample Card",children:e.jsx(a,{variant:"body1",children:"Do you Know? Able is used by more than 2.4K+ Customers worldwide. This new v9 version is the major release of Able Pro Dashboard Template with having brand new modern User Interface."})})}export{s as default};

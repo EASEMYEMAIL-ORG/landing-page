@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 // material-ui
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 
 // third-party
 import { useDropzone } from 'react-dropzone';
@@ -76,7 +76,7 @@ export default function MultiFileUpload({ error, showList = false, files, type, 
       </Box>
 
       {type !== DropzopType.STANDARD && files && files.length > 0 && (
-        <Stack direction="row" justifyContent="flex-end" spacing={1.5} sx={{ mt: 1.5 }}>
+        <Stack direction="row" sx={{ gap: 1.5, justifyContent: 'flex-end', mt: 1.5 }}>
           <Button color="inherit" size="small" onClick={onRemoveAll}>
             Remove all
           </Button>

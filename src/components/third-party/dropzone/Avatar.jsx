@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 // material-ui
-import { alpha, styled, useTheme } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
+import CardMedia from '@mui/material/CardMedia';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -43,7 +44,7 @@ const PlaceholderWrapper = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   color: theme.palette.text.secondary,
-  backgroundColor: alpha(theme.palette.primary.lighter, 0.75),
+  backgroundColor: alpha(theme.palette.secondary.lighter, 0.75),
   transition: theme.transitions.create('opacity', {
     easing: theme.transitions.easing.easeInOut,
     duration: theme.transitions.duration.shorter
@@ -54,8 +55,6 @@ const PlaceholderWrapper = styled('div')(({ theme }) => ({
 // ==============================|| UPLOAD - AVATAR ||============================== //
 
 export default function AvatarUpload({ error, file, setFieldValue, sx }) {
-  const theme = useTheme();
-
   const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
     accept: { 'image/*': [] },
     multiple: false,
@@ -70,7 +69,8 @@ export default function AvatarUpload({ error, file, setFieldValue, sx }) {
   const thumbs =
     file &&
     file.map((item) => (
-      <img
+      <CardMedia
+        component="img"
         key={item.name}
         alt={item.name}
         src={item.preview}
@@ -89,13 +89,13 @@ export default function AvatarUpload({ error, file, setFieldValue, sx }) {
           <PlaceholderWrapper
             className="placeholder"
             sx={{
-              ...(thumbs && { opacity: 0, color: 'common.white', bgcolor: 'secondary.darker' }),
+              ...(thumbs && { opacity: 0, color: 'background.default', bgcolor: 'secondary.darker' }),
               ...((isDragReject || error) && { bgcolor: 'error.lighter' })
             }}
           >
-            <Stack spacing={0.5} alignItems="center">
-              <Camera style={{ color: theme.palette.secondary.main, fontSize: '2rem' }} />
-              <Typography color="secondary">{file ? 'Update' : 'Upload'}</Typography>
+            <Stack sx={{ gap: 0.5, alignItems: 'center', color: file ? 'secondary.light' : 'primary.main' }}>
+              <Camera style={{ fontSize: '2rem' }} />
+              <Typography>{file ? 'Update' : 'Upload'}</Typography>
             </Stack>
           </PlaceholderWrapper>
         </DropzoneWrapper>
