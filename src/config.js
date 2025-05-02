@@ -3,7 +3,7 @@
 export const facebookColor = '#3b5998';
 export const linkedInColor = '#0e76a8';
 
-export const APP_DEFAULT_PATH = '/dashboard/default';
+export const APP_DEFAULT_PATH = '/';
 export const HORIZONTAL_MAX_ITEM = 8;
 export const DRAWER_WIDTH = 280;
 export const MINI_DRAWER_WIDTH = 90;

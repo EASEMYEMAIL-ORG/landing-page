@@ -59,8 +59,9 @@ export default function AboutUs() {
                       At Developlogy, we specialize in custom software development tailored for startups, businesses, and entrepreneurs
                       who need reliable, scalable digital solutions.
                       <br /><br />
-                      Founded by Naveed Pagdiwale, a full-stack developer with realtime industry hands-on experience, we bring deep technical expertise,
-                      a problem-solving mindset, and a commitment to delivering clean, efficient, and future-proof code.
+                      Founded by Naveed Pagdiwale, a full-stack developer with realtime industry hands-on experience, we bring deep
+                      technical expertise, a problem-solving mindset, and a commitment to delivering clean, efficient, and future-proof
+                      code.
                       <br /><br />
                       Whether you need a freelance developer, a technical consultant, or an end-to-end project partner, we help you turn ideas into
                       production-ready software—on time and within budget.
