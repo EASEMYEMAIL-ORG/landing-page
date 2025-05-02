@@ -1,34 +1,13 @@
-import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-
-// material-ui
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Rating from '@mui/material/Rating';
-import Tooltip from '@mui/material/Tooltip';
-import Container from '@mui/material/Container';
-import CardMedia from '@mui/material/CardMedia';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Menu from '@mui/material/Menu';
 import Typography from '@mui/material/Typography';
-
-// third party
+import Container from '@mui/material/Container';
 import { motion } from 'framer-motion';
 
-// assets
-import AnimateButton from 'components/@extended/AnimateButton';
-
-// ==============================|| LANDING - HERO PAGE ||============================== //
-
-export default function AboutUS() {
+export default function AboutUs() {
   const theme = useTheme();
-  
-  console.log("*****************")
+
   return (
     <Box sx={{ minHeight: '100vh', position: 'relative', pb: 12.5, pt: 10, display: 'flex', alignItems: 'center' }}>
       <Container>
@@ -39,11 +18,7 @@ export default function AboutUS() {
                 <motion.div
                   initial={{ opacity: 0, translateY: 550 }}
                   animate={{ opacity: 1, translateY: 0 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 150,
-                    damping: 30
-                  }}
+                  transition={{ type: 'spring', stiffness: 150, damping: 30 }}
                 >
                   <Typography
                     variant="h1"
@@ -53,7 +28,7 @@ export default function AboutUS() {
                       lineHeight: 1.2
                     }}
                   >
-                    Explore One of the{' '}
+                    About{' '}
                     <Typography
                       variant="h1"
                       component="span"
@@ -67,94 +42,54 @@ export default function AboutUS() {
                         '@keyframes move-bg': { '100%': { backgroundPosition: '400% 0' } }
                       }}
                     >
-                      Featured Dashboard
-                    </Typography>{' '}
-                    Template in Themeforest
+                      Developlogy
+                    </Typography>
                   </Typography>
                 </motion.div>
               </Grid>
+
               <Grid container justifyContent="center" item xs={12}>
-                <Grid item xs={8}>
+                <Grid item xs={10}>
                   <motion.div
                     initial={{ opacity: 0, translateY: 550 }}
                     animate={{ opacity: 1, translateY: 0 }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 150,
-                      damping: 30,
-                      delay: 0.2
-                    }}
+                    transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.2 }}
                   >
-                    <Typography
-                      variant="h6"
-                      sx={{
-                        fontSize: { xs: '0.875rem', md: '1rem' },
-                        fontWeight: 400,
-                        lineHeight: { xs: 1.4, md: 1.4 }
-                      }}
-                    >
-                      Able Pro is the one of the Featured admin dashboard template in Envato Marketplace and used by over 2.5K+ Customers
-                      wordwide.
+                    <Typography variant="h6" sx={{ fontSize: { xs: '0.95rem', md: '1.1rem' }, fontWeight: 400, lineHeight: 1.7 }}>
+                      At Developlogy, we specialize in custom software development tailored for startups, businesses, and entrepreneurs
+                      who need reliable, scalable digital solutions.
+                      <br /><br />
+                      Founded by Naveed Pagdiwale, a full-stack developer with realtime industry hands-on experience, we bring deep technical expertise,
+                      a problem-solving mindset, and a commitment to delivering clean, efficient, and future-proof code.
+                      <br /><br />
+                      Whether you need a freelance developer, a technical consultant, or an end-to-end project partner, we help you turn ideas into
+                      production-ready software—on time and within budget.
                     </Typography>
                   </motion.div>
                 </Grid>
               </Grid>
+
               <Grid item xs={12}>
                 <motion.div
                   initial={{ opacity: 0, translateY: 550 }}
                   animate={{ opacity: 1, translateY: 0 }}
-                  transition={{
-                    type: 'spring',
-                    stiffness: 150,
-                    damping: 30,
-                    delay: 0.6
-                  }}
+                  transition={{ type: 'spring', stiffness: 150, damping: 30, delay: 0.4 }}
                 >
-                  <Grid container spacing={3} justifyContent="center">
-                    <Grid
-                      item
-                      sx={{
-                        position: 'relative',
-                        '&:after': {
-                          content: '""',
-                          position: 'absolute',
-                          height: 30,
-                          bottom: 10,
-                          left: 'auto',
-                          right: '-12px',
-                          width: '1px',
-                          background: theme.palette.divider
-                        }
-                      }}
-                    >
-                      <Rating name="read-only" value={4.5} size="small" readOnly />
-                      <Typography variant="h4">
-                        4.7/5
-                        <span
-                          style={{
-                            fontSize: '75%',
-                            fontWeight: 400,
-                            margin: 5,
-                            color: theme.palette.text.secondary
-                          }}
-                        >
-                          Ratings
-                        </span>
+                  <Typography variant="h4" gutterBottom>
+                    Services We Offer:
+                  </Typography>
+                  <Grid container justifyContent="center">
+                    <Grid item xs={10}>
+                      <ul style={{ textAlign: 'left', fontSize: '1rem', lineHeight: 1.9 }}>
+                        <li>Full-Stack Web & Mobile App Development</li>
+                        <li>API Integration & Backend Engineering</li>
+                        <li>Software Architecture Consulting</li>
+                        <li>UI/UX Collaboration & Frontend Development</li>
+                        <li>Freelance or Project-Based Engagements</li>
+                      </ul>
+                      <Typography variant="h5" sx={{ mt: 3 }}>
+                        Let&apos;s build something great together.
                       </Typography>
-                    </Grid>
-                    <Grid item>
-                      <Typography variant="h5">
-                        <span
-                          style={{
-                            fontSize: '75%',
-                            fontWeight: 400,
-                            color: theme.palette.text.secondary
-                          }}
-                        >
-                          Sales
-                        </span>
-                      </Typography>
-                      <Typography variant="h4">2.5K+</Typography>
                     </Grid>
                   </Grid>
                 </motion.div>
