@@ -24,8 +24,8 @@ export default function LogoMain() {
         version="1.2"
         width="250px"
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:ev="http://www.w3.org/2001/xml-events"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlnsev="http://www.w3.org/2001/xml-events"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <text fill={theme.palette.primary.main} fontFamily="Arial" fontSize="36" fontWeight="bold" x="0px" y="40px">
           Developlogy

@@ -13,8 +13,8 @@ export default function LogoIcon() {
         version="1.2"
         width="250px"
         xmlns="http://www.w3.org/2000/svg"
-        xmlns:ev="http://www.w3.org/2001/xml-events"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlnsev="http://www.w3.org/2001/xml-events"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <rect fill={theme.palette.primary.main} height="20" rx="4" ry="4" width="20" x="4" y="4" />
         <text fill={theme.palette.primary.main} fontFamily="Arial" fontSize="16" fontWeight="bold" x="30" y="20">
