@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, cloneElement } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
-// material-ui
+// MUI
 import { alpha, useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AppBar from '@mui/material/AppBar';
@@ -10,40 +10,34 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
-import CardMedia from '@mui/material/CardMedia';
-import Collapse from '@mui/material/Collapse';
 import Drawer from '@mui/material/Drawer';
 import Link from '@mui/material/Link';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Menu from '@mui/material/Menu';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
-import Tooltip from '@mui/material/Tooltip';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import Typography from '@mui/material/Typography';
 
-// project-imports
+// Project imports
 import { ThemeDirection } from 'config';
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
-import Dot from 'components/@extended/Dot';
 import Logo from 'components/logo';
-import { handlerComponentDrawer, useGetMenuMaster } from 'api/menu';
 import { useIspValue } from 'hooks/useIspValue';
-import { techData } from 'data/tech-data';
 
-// icons
-import { ArrowDown2, ArrowUp2, DocumentDownload, ExportSquare, HambergerMenu, Minus } from 'iconsax-react';
+// Icons
+import { ExportSquare, DocumentDownload, HambergerMenu } from 'iconsax-react';
+import { Minus } from 'iconsax-react';
 
 function ElevationScroll({ children, window }) {
   const theme = useTheme();
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 10,
-    target: window ? window : undefined
+    target: window || undefined
   });
 
   return cloneElement(children, {
@@ -58,10 +52,6 @@ export default function Header({ layout = 'landing', ...others }) {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
   const [drawerToggle, setDrawerToggle] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const { menuMaster } = useGetMenuMaster();
   const ispValueAvailable = useIspValue();
 
   const drawerToggler = (open) => (event) => {
@@ -70,59 +60,6 @@ export default function Header({ layout = 'landing', ...others }) {
   };
 
   const url = ispValueAvailable ? 'https://1.envato.market/OrJ5nn' : 'https://1.envato.market/zNkqj6';
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const MobileMenuListItem = techData.map((item, index) => {
-    const finalUrl = item.url !== '#!' && ispValueAvailable ? `${item.url}?isp=1` : item.url;
-    return (
-      <ListItemButton
-        key={index}
-        component={item.label === 'React MUI' ? RouterLink : 'a'}
-        {...(item.label === 'React MUI' ? { to: finalUrl } : { href: finalUrl })}
-        target={item.target}
-        sx={{ p: 0 }}
-      >
-        <ListItemIcon>
-          <Dot size={4} color="secondary" />
-        </ListItemIcon>
-        <ListItemText primary={item.label} primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-      </ListItemButton>
-    );
-  });
-
-  const listItems = techData.map((item, index) => {
-    const finalUrl = item.url !== '#!' && ispValueAvailable ? `${item.url}?isp=1` : item.url;
-    return (
-      <ListItemButton
-        key={index}
-        component={item.label === 'React MUI' ? RouterLink : 'a'}
-        {...(item.label === 'React MUI' ? { to: finalUrl } : { href: finalUrl })}
-        target={item.target}
-      >
-        <Tooltip title={item.tooltipTitle} placement="bottom">
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <ListItemAvatar
-              sx={{
-                minWidth: 'auto',
-                marginRight: 1,
-                filter: item.tooltipTitle === 'Live Preview Not Available' ? 'grayscale(1)' : ''
-              }}
-            >
-              <CardMedia component="img" image={item.image} sx={{ width: '30px' }} />
-            </ListItemAvatar>
-            <ListItemText primary={item.label} />
-          </Box>
-        </Tooltip>
-      </ListItemButton>
-    );
-  });
 
   return (
     <ElevationScroll layout={layout} {...others}>
@@ -135,57 +72,43 @@ export default function Header({ layout = 'landing', ...others }) {
         }}
       >
         <Container maxWidth="xl" disableGutters={matchDownMd}>
-          <Toolbar sx={{ px: { xs: 1.5, sm: 4, md: 0, lg: 0 }, py: 1 }}>
-            {/* Desktop Header */}
-            <Stack direction="row" sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }} alignItems="center">
-              <Box sx={{ display: 'inline-block' }}>
-                <Logo to="/" />
-              </Box>
+          <Toolbar sx={{ px: { xs: 1.5, sm: 4 }, py: 1 }}>
+            {/* Logo & Version */}
+            <Stack direction="row" sx={{ flexGrow: 1 }} alignItems="center">
+              <Logo to="/" />
               <Chip
                 label={import.meta.env.VITE_APP_VERSION}
                 variant="outlined"
                 size="small"
                 color="secondary"
-                sx={{ mt: 0.5, ml: 1, fontSize: '0.725rem', height: 20, '& .MuiChip-label': { px: 0.5 } }}
+                sx={{ ml: 1, fontSize: '0.725rem', height: 20, '& .MuiChip-label': { px: 0.5 } }}
               />
             </Stack>
+
+            {/* Desktop Nav */}
             <Stack
               direction="row"
-              sx={{
-                '& .header-link': { fontWeight: 500, '&:hover': { color: 'primary.main' } },
-                display: { xs: 'none', md: 'flex' }
-              }}
               spacing={3}
               alignItems="center"
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                '& .header-link': { fontWeight: 500, '&:hover': { color: 'primary.main' } }
+              }}
             >
-              <Link
-                className="header-link"
-                sx={{ ml: theme.direction === ThemeDirection.RTL ? 3 : 0 }}
-                color="secondary.main"
-                component={RouterLink}
-                to={ispValueAvailable ? '/login?isp=1' : '/about-us'}
-                target="_blank"
-                underline="none"
-              >
-                About us
+              <Link className="header-link" color="secondary.main" component={RouterLink} to="/about-us" underline="none">
+                About Us
               </Link>
-              <Link
-                className="header-link"
-                color="secondary.main"
-                component={RouterLink}
-                to={ispValueAvailable ? '/components-overview/buttons?isp=1' : '/components-overview/buttons'}
-                underline="none"
-              >
+              <Link className="header-link" color="secondary.main" component={RouterLink} to="/careers" underline="none">
                 Careers
               </Link>
               <Link
                 className="header-link"
                 color="secondary.main"
                 href="https://phoenixcoded.gitbook.io/able-pro"
-                target="_blank"
                 underline="none"
+                target="_blank"
               >
-                Contact us
+                Contact Us
               </Link>
               <Link href="https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template" target="_blank" underline="none">
                 <IconButton
@@ -195,45 +118,36 @@ export default function Header({ layout = 'landing', ...others }) {
                   sx={{
                     bgcolor: 'secondary.light',
                     color: 'secondary.darker',
-                    '&:hover': { color: 'secondary.lighter', bgcolor: 'secondary.darker' }
+                    '&:hover': {
+                      color: 'secondary.lighter',
+                      bgcolor: 'secondary.darker'
+                    }
                   }}
                 >
                   <DocumentDownload />
                 </IconButton>
               </Link>
-              <Box sx={{ display: 'inline-block' }}>
-                <AnimateButton>
-                  <Button
-                    component={Link}
-                    href={url}
-                    target="_blank"
-                    disableElevation
-                    startIcon={<ExportSquare />}
-                    color="success"
-                    size="large"
-                    variant="contained"
-                  >
-                    Schedule a meet
-                  </Button>
-                </AnimateButton>
-              </Box>
+              <AnimateButton>
+                <Button
+                  component={Link}
+                  href={url}
+                  target="_blank"
+                  disableElevation
+                  startIcon={<ExportSquare />}
+                  color="success"
+                  size="large"
+                  variant="contained"
+                >
+                  Schedule a Meet
+                </Button>
+              </AnimateButton>
             </Stack>
 
-            {/* Mobile Header */}
-            <Box
-              sx={{
-                width: '100%',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                display: { xs: 'flex', md: 'none' }
-              }}
-            >
-              <Logo to="/" />
-              <Stack direction="row" sx={{ gap: 2 }}>
-                <IconButton size="large" color="secondary" onClick={drawerToggler(true)} sx={{ p: 1 }}>
-                  <HambergerMenu />
-                </IconButton>
-              </Stack>
+            {/* Mobile Hamburger */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+              <IconButton size="large" color="secondary" onClick={drawerToggler(true)} sx={{ p: 1 }}>
+                <HambergerMenu />
+              </IconButton>
               <Drawer
                 anchor="top"
                 open={drawerToggle}
@@ -241,6 +155,8 @@ export default function Header({ layout = 'landing', ...others }) {
                 sx={{ '& .MuiDrawer-paper': { backgroundImage: 'none' } }}
               >
                 <Box
+                  role="presentation"
+                  onKeyDown={drawerToggler(false)}
                   sx={{
                     width: 'auto',
                     '& .MuiListItemIcon-root': {
@@ -248,31 +164,39 @@ export default function Header({ layout = 'landing', ...others }) {
                       minWidth: 32
                     }
                   }}
-                  role="presentation"
-                  onKeyDown={drawerToggler(false)}
                 >
                   <List>
+                    <Link style={{ textDecoration: 'none' }} component={RouterLink} to="/about-us">
+                      <ListItemButton>
+                        <ListItemIcon><Minus /></ListItemIcon>
+                        <ListItemText primary="About Us" />
+                      </ListItemButton>
+                    </Link>
+                    <Link style={{ textDecoration: 'none' }} component={RouterLink} to="/careers">
+                      <ListItemButton>
+                        <ListItemIcon><Minus /></ListItemIcon>
+                        <ListItemText primary="Careers" />
+                      </ListItemButton>
+                    </Link>
+                    <Link style={{ textDecoration: 'none' }} href="https://phoenixcoded.gitbook.io/able-pro" target="_blank">
+                      <ListItemButton>
+                        <ListItemIcon><Minus /></ListItemIcon>
+                        <ListItemText primary="Contact Us" />
+                      </ListItemButton>
+                    </Link>
+                    <Link style={{ textDecoration: 'none' }} href="https://github.com/phoenixcoded/able-pro-free-admin-dashboard-template" target="_blank">
+                      <ListItemButton>
+                        <ListItemIcon><Minus /></ListItemIcon>
+                        <ListItemText primary="GitHub" />
+                      </ListItemButton>
+                    </Link>
                     <Link style={{ textDecoration: 'none' }} href={url} target="_blank">
                       <ListItemButton>
-                        <ListItemIcon>
-                          <Minus />
-                        </ListItemIcon>
-                        <ListItemText primary="Schedule a meet" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                        <Chip color="primary" label={import.meta.env.VITE_APP_VERSION} size="small" />
+                        <ListItemIcon><Minus /></ListItemIcon>
+                        <ListItemText primary="Schedule a Meet" />
+                        <Chip label={import.meta.env.VITE_APP_VERSION} size="small" color="primary" />
                       </ListItemButton>
                     </Link>
-                    <Link style={{ textDecoration: 'none' }} href="#" onClick={() => setOpenDrawer(!openDrawer)}>
-                      <ListItemButton>
-                        <ListItemIcon>
-                          <Minus />
-                        </ListItemIcon>
-                        <ListItemText primary="Live Preview" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
-                        <Stack sx={{ path: { strokeWidth: 2 } }}>{openDrawer ? <ArrowUp2 size="16" /> : <ArrowDown2 size="16" />}</Stack>
-                      </ListItemButton>
-                    </Link>
-                    <Collapse in={openDrawer} timeout="auto" unmountOnExit>
-                      <List sx={{ p: 0, pl: 6, '& .MuiListItemIcon-root': { minWidth: 20 } }}>{MobileMenuListItem}</List>
-                    </Collapse>
                   </List>
                 </Box>
               </Drawer>
@@ -284,13 +208,5 @@ export default function Header({ layout = 'landing', ...others }) {
   );
 }
 
-ElevationScroll.propTypes = {
-  layout: PropTypes.string,
-  children: PropTypes.node,
-  window: PropTypes.any
-};
-
-Header.propTypes = {
-  layout: PropTypes.string,
-  others: PropTypes.any
-};
+ElevationScroll.propTypes = { children: PropTypes.node, window: PropTypes.any };
+Header.propTypes = { layout: PropTypes.string, others: PropTypes.any };
