@@ -22,7 +22,6 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Menu from '@mui/material/Menu';
 import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 
@@ -36,10 +35,9 @@ import { handlerComponentDrawer, useGetMenuMaster } from 'api/menu';
 import { useIspValue } from 'hooks/useIspValue';
 import { techData } from 'data/tech-data';
 
-// assets
+// icons
 import { ArrowDown2, ArrowUp2, DocumentDownload, ExportSquare, HambergerMenu, Minus } from 'iconsax-react';
 
-// elevation scroll
 function ElevationScroll({ children, window }) {
   const theme = useTheme();
   const trigger = useScrollTrigger({
@@ -56,32 +54,29 @@ function ElevationScroll({ children, window }) {
   });
 }
 
-// ==============================|| COMPONENTS - APP BAR ||============================== //
-
 export default function Header({ layout = 'landing', ...others }) {
   const theme = useTheme();
   const matchDownMd = useMediaQuery(theme.breakpoints.down('md'));
   const [drawerToggle, setDrawerToggle] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-
   const [openDrawer, setOpenDrawer] = useState(false);
-
   const { menuMaster } = useGetMenuMaster();
+  const ispValueAvailable = useIspValue();
 
-  /** Method called on multiple components with different event types */
   const drawerToggler = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) return;
     setDrawerToggle(open);
   };
-  const ispValueAvailable = useIspValue();
 
   const url = ispValueAvailable ? 'https://1.envato.market/OrJ5nn' : 'https://1.envato.market/zNkqj6';
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   const MobileMenuListItem = techData.map((item, index) => {
@@ -104,7 +99,6 @@ export default function Header({ layout = 'landing', ...others }) {
 
   const listItems = techData.map((item, index) => {
     const finalUrl = item.url !== '#!' && ispValueAvailable ? `${item.url}?isp=1` : item.url;
-
     return (
       <ListItemButton
         key={index}
@@ -130,9 +124,6 @@ export default function Header({ layout = 'landing', ...others }) {
     );
   });
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
   return (
     <ElevationScroll layout={layout} {...others}>
       <AppBar
@@ -145,10 +136,11 @@ export default function Header({ layout = 'landing', ...others }) {
       >
         <Container maxWidth="xl" disableGutters={matchDownMd}>
           <Toolbar sx={{ px: { xs: 1.5, sm: 4, md: 0, lg: 0 }, py: 1 }}>
+            {/* Desktop Header */}
             <Stack direction="row" sx={{ flexGrow: 1, display: { xs: 'none', md: 'block' } }} alignItems="center">
-              <Typography sx={{ textAlign: 'left', display: 'inline-block' }}>
+              <Box sx={{ display: 'inline-block' }}>
                 <Logo to="/" />
-              </Typography>
+              </Box>
               <Chip
                 label={import.meta.env.VITE_APP_VERSION}
                 variant="outlined"
@@ -161,9 +153,10 @@ export default function Header({ layout = 'landing', ...others }) {
               direction="row"
               sx={{
                 '& .header-link': { fontWeight: 500, '&:hover': { color: 'primary.main' } },
-                display: { xs: 'none', md: 'block' }
+                display: { xs: 'none', md: 'flex' }
               }}
               spacing={3}
+              alignItems="center"
             >
               <Link
                 className="header-link"
@@ -182,9 +175,8 @@ export default function Header({ layout = 'landing', ...others }) {
                 component={RouterLink}
                 to={ispValueAvailable ? '/components-overview/buttons?isp=1' : '/components-overview/buttons'}
                 underline="none"
-                aria-disabled
               >
-                Carrers
+                Careers
               </Link>
               <Link
                 className="header-link"
@@ -226,6 +218,65 @@ export default function Header({ layout = 'landing', ...others }) {
                 </AnimateButton>
               </Box>
             </Stack>
+
+            {/* Mobile Header */}
+            <Box
+              sx={{
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                display: { xs: 'flex', md: 'none' }
+              }}
+            >
+              <Logo to="/" />
+              <Stack direction="row" sx={{ gap: 2 }}>
+                <IconButton size="large" color="secondary" onClick={drawerToggler(true)} sx={{ p: 1 }}>
+                  <HambergerMenu />
+                </IconButton>
+              </Stack>
+              <Drawer
+                anchor="top"
+                open={drawerToggle}
+                onClose={drawerToggler(false)}
+                sx={{ '& .MuiDrawer-paper': { backgroundImage: 'none' } }}
+              >
+                <Box
+                  sx={{
+                    width: 'auto',
+                    '& .MuiListItemIcon-root': {
+                      fontSize: '1rem',
+                      minWidth: 32
+                    }
+                  }}
+                  role="presentation"
+                  onKeyDown={drawerToggler(false)}
+                >
+                  <List>
+                    <Link style={{ textDecoration: 'none' }} href={url} target="_blank">
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <Minus />
+                        </ListItemIcon>
+                        <ListItemText primary="Schedule a meet" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
+                        <Chip color="primary" label={import.meta.env.VITE_APP_VERSION} size="small" />
+                      </ListItemButton>
+                    </Link>
+                    <Link style={{ textDecoration: 'none' }} href="#" onClick={() => setOpenDrawer(!openDrawer)}>
+                      <ListItemButton>
+                        <ListItemIcon>
+                          <Minus />
+                        </ListItemIcon>
+                        <ListItemText primary="Live Preview" primaryTypographyProps={{ variant: 'h6', color: 'secondary.main' }} />
+                        <Stack sx={{ path: { strokeWidth: 2 } }}>{openDrawer ? <ArrowUp2 size="16" /> : <ArrowDown2 size="16" />}</Stack>
+                      </ListItemButton>
+                    </Link>
+                    <Collapse in={openDrawer} timeout="auto" unmountOnExit>
+                      <List sx={{ p: 0, pl: 6, '& .MuiListItemIcon-root': { minWidth: 20 } }}>{MobileMenuListItem}</List>
+                    </Collapse>
+                  </List>
+                </Box>
+              </Drawer>
+            </Box>
           </Toolbar>
         </Container>
       </AppBar>
@@ -233,6 +284,13 @@ export default function Header({ layout = 'landing', ...others }) {
   );
 }
 
-ElevationScroll.propTypes = { layout: PropTypes.string, children: PropTypes.node, window: PropTypes.any };
+ElevationScroll.propTypes = {
+  layout: PropTypes.string,
+  children: PropTypes.node,
+  window: PropTypes.any
+};
 
-Header.propTypes = { layout: PropTypes.string, others: PropTypes.any };
+Header.propTypes = {
+  layout: PropTypes.string,
+  others: PropTypes.any
+};
