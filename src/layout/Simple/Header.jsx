@@ -76,13 +76,13 @@ export default function Header({ layout = 'landing', ...others }) {
             {/* Logo & Version */}
             <Stack direction="row" sx={{ flexGrow: 1 }} alignItems="center">
               <Logo to="/" />
-              <Chip
+              {/* <Chip
                 label={import.meta.env.VITE_APP_VERSION}
                 variant="outlined"
                 size="small"
                 color="secondary"
                 sx={{ ml: 1, fontSize: '0.725rem', height: 20, '& .MuiChip-label': { px: 0.5 } }}
-              />
+              /> */}
             </Stack>
 
             {/* Desktop Nav */}

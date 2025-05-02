@@ -63,7 +63,7 @@ export let DropzopType;
 // ==============================|| THEME CONFIG ||============================== //
 
 const config = {
-  fontFamily: `Inter var`,
+  fontFamily: `Poppins`,
   i18n: 'en',
   menuOrientation: MenuOrientation.VERTICAL,
   menuCaption: true,
@@ -74,7 +74,5 @@ const config = {
   themeDirection: ThemeDirection.LTR,
   themeContrast: false
 };
-
-console.log('Font ->', config.fontFamily);
 
 export default config;
